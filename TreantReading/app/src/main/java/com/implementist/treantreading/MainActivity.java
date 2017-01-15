@@ -5,21 +5,22 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+/**
+ * Copyright © 2017 Implementist. All rights reserved.
+ */
+
 public class MainActivity extends BaseActivity {
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-    }
-    private Button button;
+    private Button btn;
+
     @Override
     public void widgetClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.button:
                 //用简化了的toast和startActivity
-                showToast("toast");
-                startActivity(MainActivity.class);
+                showToast("Test");
+                //startActivity(MainActivity.class);
+                //Log.i("Test", "Test Message");
                 break;
         }
     }
@@ -44,12 +45,12 @@ public class MainActivity extends BaseActivity {
      */
     @Override
     public void initView(View view) {
-        button=$(R.id.button);
+        btn = $(R.id.button);
     }
 
     @Override
     public void setListener() {
-        button.setOnClickListener(this);
+        btn.setOnClickListener(this);
     }
 
     @Override

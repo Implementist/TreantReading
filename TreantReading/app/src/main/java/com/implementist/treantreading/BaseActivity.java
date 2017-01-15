@@ -14,7 +14,7 @@ import android.view.WindowManager;
 import android.widget.Toast;
 
 /**
- * Copyright © 2017. Fishbone Inc. All rights reserved.
+ * Copyright © 2017 Implementist. All rights reserved.
  */
 
 public abstract class BaseActivity extends Activity implements View.OnClickListener {
@@ -51,21 +51,24 @@ public abstract class BaseActivity extends Activity implements View.OnClickListe
         Bundle bundle = getIntent().getExtras();
         initParams(bundle);
         View mView = bindView();
+
         if (null == mView) {
-            mContextView = LayoutInflater.from(this)
-                    .inflate(bindLayout(), null);
+            mContextView = LayoutInflater.from(this).inflate(bindLayout(), null);
         } else
             mContextView = mView;
-        if (mAllowFullScreen) {
+
+        if (mAllowFullScreen)
             requestWindowFeature(Window.FEATURE_NO_TITLE);
-        }
+
         if (isSetStatusBar) {
             steepStatusBar();
         }
         setContentView(mContextView);
+
         if (!isAllowScreenRotate) {
             setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         }
+
         initView(mContextView);
         setListener();
         doBusiness(this);
@@ -77,47 +80,40 @@ public abstract class BaseActivity extends Activity implements View.OnClickListe
     private void steepStatusBar() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             // 透明状态栏
-            getWindow().addFlags(
-                    WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+            getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
             // 透明导航栏
-            getWindow().addFlags(
-                    WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
+            getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
         }
     }
 
     /**
      * [初始化参数]
      *
-     * @param params
+     * @param params 参数
      */
     public abstract void initParams(Bundle params);
 
     /**
      * [绑定视图]
-     *
-     * @return
      */
     public abstract View bindView();
 
     /**
      * [绑定布局]
-     *
-     * @return
      */
     public abstract int bindLayout();
 
     /**
      * [初始化控件]
      *
-     * @param view
+     * @param view 控件
      */
     public abstract void initView(final View view);
 
     /**
      * [绑定控件]
      *
-     * @param resId
-     * @return
+     * @param resId 资源Id
      */
     protected <T extends View> T $(int resId) {
         return (T) super.findViewById(resId);
@@ -136,14 +132,14 @@ public abstract class BaseActivity extends Activity implements View.OnClickListe
     /**
      * [业务操作]
      *
-     * @param mContext
+     * @param mContext 上下文
      */
     public abstract void doBusiness(Context mContext);
 
     /**
      * [页面跳转]
      *
-     * @param cls
+     * @param cls 类名
      */
     public void startActivity(Class<?> cls) {
         startActivity(new Intent(BaseActivity.this, cls));
@@ -152,8 +148,8 @@ public abstract class BaseActivity extends Activity implements View.OnClickListe
     /**
      * [携带数据的页面跳转]
      *
-     * @param cls
-     * @param bundle
+     * @param cls 类名
+     * @param bundle bundle
      */
     public void startActivity(Class<?> cls, Bundle bundle) {
         Intent intent = new Intent();
@@ -167,12 +163,11 @@ public abstract class BaseActivity extends Activity implements View.OnClickListe
     /**
      * [含有Bundle通过Class打开编辑界面]
      *
-     * @param cls
-     * @param bundle
-     * @param requestCode
+     * @param cls 类名
+     * @param bundle bundle
+     * @param requestCode 请求码
      */
-    public void startActivityForResult(Class<?> cls, Bundle bundle,
-                                       int requestCode) {
+    public void startActivityForResult(Class<?> cls, Bundle bundle, int requestCode) {
         Intent intent = new Intent();
         intent.setClass(this, cls);
         if (bundle != null) {
@@ -220,7 +215,7 @@ public abstract class BaseActivity extends Activity implements View.OnClickListe
     /**
      * [简化Toast]
      *
-     * @param msg
+     * @param msg 信息
      */
     protected void showToast(String msg) {
         Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
@@ -229,7 +224,7 @@ public abstract class BaseActivity extends Activity implements View.OnClickListe
     /**
      * [是否允许全屏]
      *
-     * @param isAllowFullScreen
+     * @param isAllowFullScreen 是否允许全屏
      */
     public void setAllowFullScreen(boolean isAllowFullScreen) {
         this.mAllowFullScreen = isAllowFullScreen;
@@ -238,7 +233,7 @@ public abstract class BaseActivity extends Activity implements View.OnClickListe
     /**
      * [是否设置沉浸状态栏]
      *
-     * @param isSetStatusBar
+     * @param isSetStatusBar 是否设置状态栏
      */
     public void setSteepStatusBar(boolean isSetStatusBar) {
         this.isSetStatusBar = isSetStatusBar;
@@ -247,7 +242,7 @@ public abstract class BaseActivity extends Activity implements View.OnClickListe
     /**
      * [是否允许屏幕旋转]
      *
-     * @param isAllowScreenRotate
+     * @param isAllowScreenRotate 是否允许屏幕旋转
      */
     public void setScreenRotate(boolean isAllowScreenRotate) {
         this.isAllowScreenRotate = isAllowScreenRotate;
