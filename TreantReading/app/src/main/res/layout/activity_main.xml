@@ -6,9 +6,53 @@
     android:orientation="vertical"
     tools:context="com.implementist.treantreading.MainActivity">
 
-    <Button
-        android:id="@+id/button"
-        android:layout_width="120dp"
+    <FrameLayout
+        android:id="@+id/main_content"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+    <RadioGroup
+        android:id="@+id/tab_menu"
+        android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:text="Test" />
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/rbBookList"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/back_color_selector"
+            android:button="@null"
+            android:checked="true"
+            android:gravity="center"
+            android:text="@string/book_list"
+            android:textColor="@drawable/text_color_selector"
+            android:textSize="20sp" />
+
+        <RadioButton
+            android:id="@+id/rbMyBooks"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/back_color_selector"
+            android:button="@null"
+            android:gravity="center"
+            android:text="@string/my_books"
+            android:textColor="@drawable/text_color_selector"
+            android:textSize="20sp" />
+
+        <RadioButton
+            android:id="@+id/rbGarden"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/back_color_selector"
+            android:button="@null"
+            android:gravity="center"
+            android:text="@string/garden"
+            android:textColor="@drawable/text_color_selector"
+            android:textSize="20sp" />
+    </RadioGroup>
 </LinearLayout>

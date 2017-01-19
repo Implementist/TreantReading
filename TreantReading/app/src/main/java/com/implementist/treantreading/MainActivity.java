@@ -2,32 +2,35 @@ package com.implementist.treantreading;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.support.annotation.IdRes;
 import android.view.View;
-import android.widget.Button;
+import android.widget.RadioGroup;
+
+import com.implementist.treantreading.frag.BookListFragment;
 
 /**
  * Copyright © 2017 Implementist. All rights reserved.
  */
 
-public class MainActivity extends BaseActivity {
+public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedChangeListener {
 
-    private Button btn;
+    private BookListFragment bookListFragment;
+    private RadioGroup rgTabMenu;
 
     @Override
-    public void widgetClick(View v) {
-        switch (v.getId()) {
-            case R.id.button:
-                //用简化了的toast和startActivity
-                showToast("Test");
-                //startActivity(MainActivity.class);
-                //Log.i("Test", "Test Message");
-                break;
-        }
+    public void widgetOnClick(View v) {
+
+    }
+
+    @Override
+    public void onCheckedChanged(RadioGroup radioGroup, @IdRes int i) {
+
     }
 
     @Override
     public void initParams(Bundle params) {
         //解析bundle内容或者设置是否旋转，沉浸，全屏
+        isSetStatusBar = false;
     }
 
     @Override
@@ -45,12 +48,14 @@ public class MainActivity extends BaseActivity {
      */
     @Override
     public void initView(View view) {
-        btn = $(R.id.button);
+        bookListFragment = new BookListFragment();
+        getSupportFragmentManager().beginTransaction().replace(R.id.main_content, bookListFragment).commit();
+        rgTabMenu = $(R.id.tab_menu);
     }
 
     @Override
     public void setListener() {
-        btn.setOnClickListener(this);
+        rgTabMenu.setOnCheckedChangeListener(this);
     }
 
     @Override
