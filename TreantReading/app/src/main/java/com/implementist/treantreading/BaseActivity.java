@@ -1,11 +1,11 @@
 package com.implementist.treantreading;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,11 +17,11 @@ import android.widget.Toast;
  * Copyright © 2017 Implementist. All rights reserved.
  */
 
-public abstract class BaseActivity extends Activity implements View.OnClickListener {
+public abstract class BaseActivity extends FragmentActivity implements View.OnClickListener {
     /**
      * 是否沉浸状态栏
      **/
-    private boolean isSetStatusBar = true;
+    protected boolean isSetStatusBar = true;
     /**
      * 是否允许全屏
      **/
@@ -42,7 +42,7 @@ public abstract class BaseActivity extends Activity implements View.OnClickListe
     /**
      * View点击
      **/
-    public abstract void widgetClick(View v);
+    public abstract void widgetOnClick(View v);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -126,7 +126,7 @@ public abstract class BaseActivity extends Activity implements View.OnClickListe
 
     @Override
     public void onClick(View v) {
-        widgetClick(v);
+        widgetOnClick(v);
     }
 
     /**
@@ -148,7 +148,7 @@ public abstract class BaseActivity extends Activity implements View.OnClickListe
     /**
      * [携带数据的页面跳转]
      *
-     * @param cls 类名
+     * @param cls    类名
      * @param bundle bundle
      */
     public void startActivity(Class<?> cls, Bundle bundle) {
@@ -163,8 +163,8 @@ public abstract class BaseActivity extends Activity implements View.OnClickListe
     /**
      * [含有Bundle通过Class打开编辑界面]
      *
-     * @param cls 类名
-     * @param bundle bundle
+     * @param cls         类名
+     * @param bundle      bundle
      * @param requestCode 请求码
      */
     public void startActivityForResult(Class<?> cls, Bundle bundle, int requestCode) {
