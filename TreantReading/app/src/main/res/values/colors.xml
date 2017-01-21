@@ -5,4 +5,5 @@
     <color name="colorAccent">#FF4081</color>
     <color name="standardWhite">#FFFFFF</color>
     <color name="standardBlue">#44CCEE</color>
+    <color name="standardLightGray">#AAAAAA</color>
 </resources>

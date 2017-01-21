@@ -1,4 +1,4 @@
-package com.implementist.treantreading;
+package com.implementist.treantreading.activity;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -6,13 +6,13 @@ import android.os.Build;
 import android.os.Bundle;
 import android.view.WindowManager;
 
-import com.implementist.treantreading.pref.AppPref;
+import com.implementist.treantreading.preference.AppPref;
 
 /**
  * Copyright © 2017 Implementist. All rights reserved.
  */
 
-public class LogoSplashActivity extends Activity {
+public class SplashActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,7 +27,7 @@ public class LogoSplashActivity extends Activity {
 
         //注意，这里没有setContentView,单纯只是用来跳转到相应的Activity
         //目的是减少首屏渲染
-        if (AppPref.isFirstRunning(this)){
+        if (AppPref.isFirstRunning(this)) {
             Intent intent = new Intent(this, MainActivity.class);
             startActivity(intent);
         }

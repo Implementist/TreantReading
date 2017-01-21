@@ -1,4 +1,4 @@
-package com.implementist.treantreading.frag;
+package com.implementist.treantreading.fragment;
 
 import android.content.Context;
 import android.os.Bundle;
