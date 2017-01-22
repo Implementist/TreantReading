@@ -1,13 +1,21 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.implementist.treantreading.frag.BookListFragment">
+    android:orientation="vertical"
+    tools:context="com.implementist.treantreading.fragment.BookListFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <com.implementist.treantreading.RefreshableView
+        android:id="@+id/rfvBookList"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:background="@color/standardLightGray">
 
-</FrameLayout>
+        <!--RefreshableView的内容不能为空-->
+        <!--以下的布局应该换一个陈列类的容器，如RecyclerView-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </com.implementist.treantreading.RefreshableView>
+
+</LinearLayout>

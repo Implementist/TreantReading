@@ -1,4 +1,4 @@
-package com.implementist.treantreading;
+package com.implementist.treantreading.activity;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -6,7 +6,8 @@ import android.support.annotation.IdRes;
 import android.view.View;
 import android.widget.RadioGroup;
 
-import com.implementist.treantreading.frag.BookListFragment;
+import com.implementist.treantreading.R;
+import com.implementist.treantreading.fragment.BookListFragment;
 
 /**
  * Copyright © 2017 Implementist. All rights reserved.

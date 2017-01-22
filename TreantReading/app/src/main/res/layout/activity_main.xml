@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.implementist.treantreading.MainActivity">
+    tools:context="com.implementist.treantreading.activity.MainActivity">
 
     <FrameLayout
         android:id="@+id/main_content"
@@ -52,6 +52,18 @@
             android:button="@null"
             android:gravity="center"
             android:text="@string/garden"
+            android:textColor="@drawable/text_color_selector"
+            android:textSize="20sp" />
+
+        <RadioButton
+            android:id="@+id/rbSettings"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/back_color_selector"
+            android:button="@null"
+            android:gravity="center"
+            android:text="@string/settings"
             android:textColor="@drawable/text_color_selector"
             android:textSize="20sp" />
     </RadioGroup>

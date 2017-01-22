@@ -1,4 +1,4 @@
-package com.implementist.treantreading;
+package com.implementist.treantreading.activity;
 
 import android.content.Context;
 import android.content.Intent;

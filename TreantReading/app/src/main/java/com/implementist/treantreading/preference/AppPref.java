@@ -1,4 +1,4 @@
-package com.implementist.treantreading.pref;
+package com.implementist.treantreading.preference;
 
 import android.content.Context;
 import android.content.SharedPreferences;
