@@ -2,6 +2,9 @@ package com.implementist.treantreading;
 
 import android.view.View;
 
+import com.implementist.treantreading.interfaces.OnPullListener;
+import com.implementist.treantreading.interfaces.PullHeader;
+
 import java.util.HashSet;
 
 /**
@@ -14,11 +17,11 @@ class ProxyPullHeader implements PullHeader {
 
     private PullHeader reaPullHeader;
 
-    public ProxyPullHeader(PullHeader reaPullHeader) {
+    ProxyPullHeader(PullHeader reaPullHeader) {
         this.reaPullHeader = reaPullHeader;
     }
 
-    public void setPullHandler(PullHeader pullHeader) {
+    void setPullHandler(PullHeader pullHeader) {
         reaPullHeader = pullHeader;
     }
 
@@ -72,11 +75,11 @@ class ProxyPullHeader implements PullHeader {
         }
     }
 
-    public void addListener(OnPullListener onPullListener) {
+    void addListener(OnPullListener onPullListener) {
         listeners.add(onPullListener);
     }
 
-    public void removeListener(OnPullListener onPullListener) {
+    void removeListener(OnPullListener onPullListener) {
         listeners.remove(onPullListener);
     }
 }

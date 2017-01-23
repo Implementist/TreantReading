@@ -1,7 +1,9 @@
-package com.implementist.treantreading;
+package com.implementist.treantreading.interfaces;
 
 import android.support.v4.view.ViewCompat;
 import android.view.View;
+
+import com.implementist.treantreading.RefreshableView;
 
 
 /**
@@ -15,41 +17,31 @@ public interface PullHeader extends OnPullListener {
     Config getConfig();
 
     abstract class Config {
-        /**
-         * 超出这个偏移量，松开手指就会触发刷新。
-         */
+        //超出这个偏移量，松开手指就会触发刷新。
         public abstract int offsetToRefresh(RefreshableView refreshView, View headerView);
 
-        /**
-         * 显示刷新的位置的偏移量
-         */
+        //显示刷新的位置的偏移量
         public abstract int offsetToKeepHeaderWhileLoading(RefreshableView refreshView, View headerView);
 
-        /**
-         * 刷新控件总共可以下拉拖动的距离
-         */
+        //刷新控件总共可以下拉拖动的距离
         public abstract int totalDistance(RefreshableView refreshView, View headerView);
 
-        /**
-         * headView 在布局中的偏移量
-         */
+        //headView 在布局中的偏移量
         public abstract int headerViewLayoutOffset(RefreshableView refreshView, View headerView);
 
-        /**
-         * contentView 是否可以向上滚动，用来判断是否可以下拉刷新，如果可以向上滚动就不做下拉刷新动作
-         */
+        //contentView 是否可以向上滚动，用来判断是否可以下拉刷新，如果可以向上滚动就不做下拉刷新动作
         public abstract boolean contentCanScrollUp(RefreshableView refreshView, View contentView);
 
         /**
          * 拦截滑动事件
          *
-         * @param refreshView
+         * @param refreshableView RefreshableView
          * @param dy              触摸滑动的偏移量
          * @param currentDistance 当前的滑动的距离
          * @param totalDistance   总的可下拉距离
-         * @return
+         * @return 还需下拉的距离
          */
-        public abstract int dispatchTouchMove(RefreshableView refreshView, int dy, int currentDistance, int totalDistance);
+        public abstract int dispatchTouchMove(RefreshableView refreshableView, int dy, int currentDistance, int totalDistance);
 
     }
 

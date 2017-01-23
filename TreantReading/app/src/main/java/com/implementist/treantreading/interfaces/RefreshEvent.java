@@ -1,4 +1,4 @@
-package com.implementist.treantreading.event;
+package com.implementist.treantreading.interfaces;
 
 /**
  * Copyright © 2017 Implementist. All rights reserved.

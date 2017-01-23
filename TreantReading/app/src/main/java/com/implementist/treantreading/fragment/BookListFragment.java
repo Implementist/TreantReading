@@ -7,7 +7,7 @@ import android.view.View;
 import com.implementist.treantreading.DefaultHeader;
 import com.implementist.treantreading.R;
 import com.implementist.treantreading.RefreshableView;
-import com.implementist.treantreading.event.RefreshEvent;
+import com.implementist.treantreading.interfaces.RefreshEvent;
 
 /**
  * Copyright © 2017 Implementist. All rights reserved.

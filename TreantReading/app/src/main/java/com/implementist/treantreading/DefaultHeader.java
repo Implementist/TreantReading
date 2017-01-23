@@ -10,6 +10,8 @@ import android.view.animation.RotateAnimation;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.implementist.treantreading.interfaces.PullHeader;
+
 /**
  * Copyright © 2017 Implementist. All rights reserved.
  */

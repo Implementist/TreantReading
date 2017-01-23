@@ -20,6 +20,7 @@ public class AppPref {
         getPreference(context).edit().putBoolean(KEY_IS_FIRST_RUNNING, false).apply();
     }
 
+    //判断是否初次运行
     public static boolean isFirstRunning(Context context) {
         return getPreference(context).getBoolean(KEY_IS_FIRST_RUNNING, true);
     }
