@@ -1,4 +1,4 @@
-package com.implementist.treantreading;
+package com.implementist.treantreading.interfaces;
 
 import android.content.Context;
 

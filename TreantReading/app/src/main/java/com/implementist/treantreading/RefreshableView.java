@@ -16,6 +16,10 @@ import android.view.ViewConfiguration;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
 
+import com.implementist.treantreading.interfaces.IPullHeaderFactory;
+import com.implementist.treantreading.interfaces.OnPullListener;
+import com.implementist.treantreading.interfaces.PullHeader;
+
 import static android.support.v4.widget.ViewDragHelper.INVALID_POINTER;
 
 public class RefreshableView extends ViewGroup implements NestedScrollingParent,
@@ -103,7 +107,7 @@ public class RefreshableView extends ViewGroup implements NestedScrollingParent,
      * 静态设置全局的IPullHeaderFactory，一次配置，所有默认使用这个factory生成的PullHeader
      * 该代码可以放在Application onCreate
      *
-     * @param factory
+     * @param factory PullHeaderFactory
      */
     public static void setPullHeaderFactory(IPullHeaderFactory factory) {
         HEADER_FACTORY = factory;
@@ -112,7 +116,7 @@ public class RefreshableView extends ViewGroup implements NestedScrollingParent,
     /**
      * 设置刷新的头部
      *
-     * @param pullHeader
+     * @param pullHeader PullHeader
      */
     public void setPullHeader(PullHeader pullHeader) {
         setPullHeader(pullHeader, false);
@@ -416,7 +420,7 @@ public class RefreshableView extends ViewGroup implements NestedScrollingParent,
 
         switch (action) {
             case MotionEvent.ACTION_DOWN:
-//                setTargetOffsetTopAndBottom(mOriginalOffsetTop - mCircleView.getTop(), true);
+                //setTargetOffsetTopAndBottom(mOriginalOffsetTop - mCircleView.getTop(), true);
                 mActivePointerId = ev.getPointerId(0);
                 mIsBeingDragged = false;
 
@@ -514,7 +518,7 @@ public class RefreshableView extends ViewGroup implements NestedScrollingParent,
                 }
 
                 if (mIsBeingDragged) {
-//                    final float overscrollTop = (y - mInitialMotionY) * DRAG_RATE;
+                    //final float overscrollTop = (y - mInitialMotionY) * DRAG_RATE;
                     mIsBeingDragged = false;
                     finishSpinner();
                 }
@@ -620,7 +624,8 @@ public class RefreshableView extends ViewGroup implements NestedScrollingParent,
     @Override
     protected void onLayout(boolean change, int l, int t, int r, int b) {
         View contentView = getContentView();
-        //每次layout 之前ViewCompat.offsetTopAndBottom 的值都会被重置，所以滚动的时候如果布局变化会导致调用onMeasure-》onLayout，滚动位置不对了。
+        //每次layout 之前ViewCompat.offsetTopAndBottom 的值都会被重置，所以滚动的时候如果布局变化会
+        //导致调用onMeasure-》onLayout，滚动位置不对了。
         //要加上之前的offset
         int alreadyOffset = scrollerHelper.getAlreadyOffset();
 
@@ -917,9 +922,9 @@ public class RefreshableView extends ViewGroup implements NestedScrollingParent,
 
     private abstract class ScrollerHelper {
 
-        protected final ScrollerCompat mScroller;
+        final ScrollerCompat mScroller;
 
-        public ScrollerHelper() {
+        ScrollerHelper() {
             mScroller = ScrollerCompat.create(getContext(), null);
         }
 
@@ -940,7 +945,7 @@ public class RefreshableView extends ViewGroup implements NestedScrollingParent,
 
         abstract void overScrollByCompat(int deltaX, int deltaY, int scrollX, int scrollY, int scrollRangeX, int scrollRangeY, int maxOverScrollX, int maxOverScrollY);
 
-        public boolean isFinished() {
+        boolean isFinished() {
             return mScroller.isFinished();
         }
     }

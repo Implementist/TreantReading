@@ -1,24 +1,21 @@
-package com.implementist.treantreading;
+package com.implementist.treantreading.interfaces;
+
+import com.implementist.treantreading.RefreshableView;
 
 /**
  * Copyright © 2017 Implementist. All rights reserved.
  */
 
-/**
- * 下拉监听
- */
+//下拉监听
 public interface OnPullListener {
 
-    /**
-     * 开始拖动
-     * @param refreshableView
-     */
+    //开始拖动
     void onPullBegin(RefreshableView refreshableView);
 
     /**
      * 位置变化
      *
-     * @param refreshView
+     * @param refreshableView RefreshableView
      * @param status          状态 /没有任何操作
      *                        public final static byte PULL_STATUS_INIT = 1;
      *                        //开始下拉
@@ -32,20 +29,14 @@ public interface OnPullListener {
      * @param dy              下拉事件的位移
      * @param currentDistance 当前位移的距离
      */
-    void onPositionChange(RefreshableView refreshView, int status, int dy, int currentDistance);
+    void onPositionChange(RefreshableView refreshableView, int status, int dy, int currentDistance);
 
-    /**
-     * 刷新中
-     */
-    void onRefreshing(RefreshableView refreshView);
+    //刷新中
+    void onRefreshing(RefreshableView refreshableView);
 
-    /**
-     * 没有刷新的释放回去
-     */
+    //没有刷新时，释放回去
     void onReset(RefreshableView refreshableView, boolean pullRelease);
 
-    /**
-     * 设置刷新完成，并且释放回去
-     */
+    //设置刷新完成，并且释放回去
     void onPullRefreshComplete(RefreshableView refreshView);
 }
