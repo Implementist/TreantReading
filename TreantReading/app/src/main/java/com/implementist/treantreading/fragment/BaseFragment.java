@@ -24,6 +24,7 @@ public abstract class BaseFragment extends Fragment implements View.OnClickListe
                              Bundle savedInstanceState) {
         mContextView = inflater.inflate(bindLayout(), container, false);
         initView(mContextView);
+        setListener();
         doBusiness(getActivity());
         return mContextView;
     }
