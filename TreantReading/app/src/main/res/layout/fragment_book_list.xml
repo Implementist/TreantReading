@@ -5,17 +5,19 @@
     android:orientation="vertical"
     tools:context="com.implementist.treantreading.fragment.BookListFragment">
 
-    <com.implementist.treantreading.RefreshableView
-        android:id="@+id/rfvBookList"
+    <com.andview.refreshview.XRefreshView
+        android:id="@+id/refrvBookList"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/standardLightGray">
+        android:background="@color/standardWhite">
 
-        <!--RefreshableView的内容不能为空-->
-        <!--以下的布局应该换一个陈列类的容器，如RecyclerView-->
-        <LinearLayout
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recvBookList"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-    </com.implementist.treantreading.RefreshableView>
-
+            android:layout_height="match_parent"
+            android:layout_marginBottom="1dp"
+            android:layout_marginTop="1dp"
+            android:background="@color/standardWhite"
+            android:scrollbars="vertical" />
+    </com.andview.refreshview.XRefreshView>
 </LinearLayout>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/lytBookUnit"
+    android:layout_width="match_parent"
+    android:layout_height="160dp"
+    android:layout_marginBottom="5dp"
+    android:background="@color/standardLightGray"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/recycler_view_test_item_person_name_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/recycler_view_test_item_person_age_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="15sp" />
+
+</LinearLayout>
