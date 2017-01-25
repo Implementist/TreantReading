@@ -9,7 +9,7 @@ import android.view.View;
 
 import com.andview.refreshview.XRefreshView;
 import com.andview.refreshview.XRefreshViewFooter;
-import com.implementist.treantreading.Person;
+import com.implementist.treantreading.BookData;
 import com.implementist.treantreading.R;
 import com.implementist.treantreading.SimpleAdapter;
 
@@ -24,7 +24,7 @@ public class BookListFragment extends BaseFragment implements XRefreshView.XRefr
 
     RecyclerView recyclerView;
     SimpleAdapter adapter;
-    List<Person> personList = new ArrayList<>();
+    List<BookData> books = new ArrayList<>();
     XRefreshView xRefreshView;
 
     LinearLayoutManager layoutManager;
@@ -42,7 +42,7 @@ public class BookListFragment extends BaseFragment implements XRefreshView.XRefr
         recyclerView.setHasFixedSize(true);
 
         initData();
-        adapter = new SimpleAdapter(personList, view.getContext());
+        adapter = new SimpleAdapter(books, view.getContext());
         // 设置静默加载模式
         //xRefreshView1.setSilenceLoadMore();
         layoutManager = new LinearLayoutManager(view.getContext());
@@ -86,9 +86,9 @@ public class BookListFragment extends BaseFragment implements XRefreshView.XRefr
     }
 
     private void initData() {
-        for (int i = 0; i < 30; i++) {
-            Person person = new Person("name" + i, "" + i);
-            personList.add(person);
+        for (int i = 1; i < 6; i++) {
+            BookData book = new BookData(i, "", "Untitled", 98 * i, 5 * i, i - 1);
+            books.add(book);
         }
     }
 
