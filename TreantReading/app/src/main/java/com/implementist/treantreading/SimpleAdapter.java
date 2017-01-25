@@ -3,9 +3,11 @@ package com.implementist.treantreading;
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.andview.refreshview.recyclerview.BaseRecyclerAdapter;
@@ -13,20 +15,41 @@ import com.andview.refreshview.recyclerview.BaseRecyclerAdapter;
 import java.util.List;
 
 public class SimpleAdapter extends BaseRecyclerAdapter<SimpleAdapter.SimpleAdapterViewHolder> {
-    private List<Person> list;
+    private List<BookData> books;
     private int largeCardHeight, smallCardHeight;
 
-    public SimpleAdapter(List<Person> list, Context context) {
-        this.list = list;
+    public SimpleAdapter(List<BookData> books, Context context) {
+        this.books = books;
         largeCardHeight = Utils.dip2px(context, 150);
         smallCardHeight = Utils.dip2px(context, 100);
     }
 
     @Override
-    public void onBindViewHolder(SimpleAdapterViewHolder holder, int position, boolean isItem) {
-        Person person = list.get(position);
-        holder.nameTv.setText(person.getName());
-        holder.ageTv.setText(person.getAge());
+    public void onBindViewHolder(final SimpleAdapterViewHolder holder, final int position, boolean isItem) {
+        BookData book = books.get(position);
+        //TODO:get image from server and set to the following ImageView
+        //holder.imgCover.setImageResource();
+
+        holder.tvTitle.setText(book.getTitle());
+        holder.tvTotalWords.setText(String.valueOf(book.getTotalWords()));
+        holder.tvNewWords.setText(String.valueOf(book.getNewWords()));
+
+        //TODO:set corresponding image by score
+        switch (book.getEvaluationScore() * 10 / 10) {
+            case 0:
+                break;
+            case 1:
+                break;
+            case 2:
+                break;
+            case 3:
+                break;
+            case 4:
+                break;
+            case 5:
+                break;
+        }
+
         ViewGroup.LayoutParams layoutParams = holder.itemView.getLayoutParams();
         if (layoutParams instanceof StaggeredGridLayoutManager.LayoutParams) {
             holder.rootView.getLayoutParams().height = position % 2 != 0 ? largeCardHeight : smallCardHeight;
@@ -37,6 +60,7 @@ public class SimpleAdapter extends BaseRecyclerAdapter<SimpleAdapter.SimpleAdapt
             @Override
             public void onClick(View view) {
                 //TODO: Write action when item is on click
+                Log.i("Test", String.valueOf(position));
             }
         });
     }
@@ -48,7 +72,7 @@ public class SimpleAdapter extends BaseRecyclerAdapter<SimpleAdapter.SimpleAdapt
 
     @Override
     public int getAdapterItemCount() {
-        return list.size();
+        return books.size();
     }
 
     @Override
@@ -56,54 +80,57 @@ public class SimpleAdapter extends BaseRecyclerAdapter<SimpleAdapter.SimpleAdapt
         return new SimpleAdapterViewHolder(view, false);
     }
 
-    public void setData(List<Person> list) {
-        this.list = list;
+    public void setData(List<BookData> books) {
+        this.books = books;
         notifyDataSetChanged();
     }
 
     @Override
     public SimpleAdapterViewHolder onCreateViewHolder(ViewGroup parent, int viewType, boolean isItem) {
         View v = LayoutInflater.from(parent.getContext()).inflate(
-                R.layout.item_recylerview, parent, false);
+                R.layout.item_book_profile, parent, false);
         SimpleAdapterViewHolder vh = new SimpleAdapterViewHolder(v, true);
         return vh;
     }
 
-    public void insert(Person person, int position) {
-        insert(list, person, position);
+    public void insert(BookData book, int position) {
+        insert(books, book, position);
     }
 
     public void remove(int position) {
-        remove(list, position);
+        remove(books, position);
     }
 
     public void clear() {
-        clear(list);
+        clear(books);
     }
 
     class SimpleAdapterViewHolder extends RecyclerView.ViewHolder {
 
+        ImageView imgCover;
+        TextView tvTitle;
+        TextView tvTotalWords;
+        TextView tvNewWords;
+        ImageView imgEvaluation;
         View rootView;
-        TextView nameTv;
-        TextView ageTv;
         public int position;
 
         SimpleAdapterViewHolder(final View itemView, final boolean isItem) {
             super(itemView);
             if (isItem) {
-                nameTv = (TextView) itemView
-                        .findViewById(R.id.recycler_view_test_item_person_name_tv);
-                ageTv = (TextView) itemView
-                        .findViewById(R.id.recycler_view_test_item_person_age_tv);
-                rootView = itemView
-                        .findViewById(R.id.lytBookUnit);
+                imgCover = (ImageView) itemView.findViewById(R.id.imgCover);
+                tvTitle = (TextView) itemView.findViewById(R.id.tvTitle);
+                tvTotalWords = (TextView) itemView.findViewById(R.id.tvTotalWords);
+                tvNewWords = (TextView) itemView.findViewById(R.id.tvNewWords);
+                imgEvaluation = (ImageView) itemView.findViewById(R.id.imgEvaluation);
+                rootView = itemView.findViewById(R.id.lytBookUnit);
             }
         }
     }
 
-    public Person getItem(int position) {
-        if (position < list.size())
-            return list.get(position);
+    public BookData getItem(int position) {
+        if (position < books.size())
+            return books.get(position);
         else
             return null;
     }

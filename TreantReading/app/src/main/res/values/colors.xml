@@ -6,5 +6,6 @@
     <color name="standardWhite">#FFFFFF</color>
     <color name="standardBlue">#44CCEE</color>
     <color name="standardDarkGray">#AAAAAA</color>
+    <color name="standardGray">#C7C7C7</color>
     <color name="standardLightGray">#EEEEEE</color>
 </resources>
