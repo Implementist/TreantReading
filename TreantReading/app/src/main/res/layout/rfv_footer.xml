@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/lytFooter"
+    android:layout_width="match_parent"
+    android:layout_height="70dp"
+    android:layout_gravity="center_horizontal"
+    android:background="@android:color/white"
+    android:padding="10dp">
+
+    <ProgressBar
+        android:id="@+id/rfv_footer_progressbar"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:indeterminateDrawable="@drawable/progressbar_rotate"
+        android:indeterminateDuration="1600"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:id="@+id/tvLoadState"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_centerHorizontal="true"
+        android:gravity="center"
+        android:text="@string/loading_complete" />
+
+    <TextView
+        android:id="@+id/tvReleaseToLoadMore"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_centerHorizontal="true"
+        android:gravity="center"
+        android:text="@string/release_to_load_more" />
+</RelativeLayout>

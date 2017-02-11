@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">树人阅读</string>
+    <string name="book_list">书单</string>
+    <string name="favorites">收藏</string>
+    <string name="garden">花园</string>
+    <string name="me">我</string>
+    <string name="pull_down_to_refresh">下拉刷新</string>
+    <string name="release_to_refresh">释放更新</string>
+    <string name="refreshing">刷新中</string>
+    <string name="refresh_complete">刷新完成</string>
+    <string name="never_refresh">从未刷新</string>
+    <string name="just_refresh">刚刚刷新</string>
+    <string name="refreshed_minutes_ago">%1s天前刷新过</string>
+    <string name="refreshed_hours_before">%1s小时前刷新过</string>
+    <string name="refreshed_days_before">%1s天前刷新过</string>
+    <string name="loading">加载中</string>
+    <string name="loading_success">加载成功</string>
+    <string name="loading_failed">加载失败</string>
+    <string name="loading_complete">加载完成</string>
+    <string name="release_to_load_more">释放加载更多</string>
+    <string name="every_item_has_been_loaded">已加载全部内容</string>
+    <string name="total_words">总字数</string>
+    <string name="new_words">生词数</string>
+    <string name="evaluation">评分</string>
+    <string name="image_of_book_cover">书籍封面</string>
+    <string name="image_of_evaluation">书籍评价</string>
+</resources>
