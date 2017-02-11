@@ -39,7 +39,7 @@
             android:background="@drawable/backcolor_selector_blue_to_white"
             android:button="@null"
             android:gravity="center"
-            android:text="@string/my_books"
+            android:text="@string/favorites"
             android:textColor="@drawable/text_color_selector"
             android:textSize="20sp" />
 
@@ -63,7 +63,7 @@
             android:background="@drawable/backcolor_selector_blue_to_white"
             android:button="@null"
             android:gravity="center"
-            android:text="@string/settings"
+            android:text="@string/me"
             android:textColor="@drawable/text_color_selector"
             android:textSize="20sp" />
     </RadioGroup>
