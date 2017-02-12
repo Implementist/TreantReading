@@ -3,7 +3,7 @@
     android:id="@+id/lytBookUnit"
     android:layout_width="match_parent"
     android:layout_height="160dp"
-    android:layout_marginBottom="5dp"
+    android:layout_marginBottom="8dp"
     android:background="@drawable/backcolor_selector_white_to_gray"
     android:clickable="true"
     android:orientation="horizontal">
@@ -13,7 +13,6 @@
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1"
-        android:background="@drawable/light_gray_border"
         android:contentDescription="@string/image_of_book_cover" />
 
     <LinearLayout
@@ -27,9 +26,9 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
-            android:background="@drawable/light_gray_border"
             android:gravity="center"
             android:text="@string/loading"
+            android:textColor="@color/standardLightText"
             android:textSize="20sp"
             android:textStyle="bold" />
 
@@ -37,13 +36,13 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
+            android:baselineAligned="false"
             android:orientation="horizontal">
 
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:background="@drawable/light_gray_border"
                 android:orientation="vertical">
 
                 <TextView
@@ -52,6 +51,7 @@
                     android:layout_weight="1"
                     android:gravity="center"
                     android:text="@string/total_words"
+                    android:textColor="@color/standardLightText"
                     android:textSize="12sp"
                     android:textStyle="bold" />
 
@@ -62,7 +62,7 @@
                     android:layout_weight="1"
                     android:gravity="center_horizontal|top"
                     android:text="@string/loading"
-                    android:textColor="@color/standardGray"
+                    android:textColor="@color/standardBlue"
                     android:textSize="22sp"
                     android:textStyle="bold" />
 
@@ -72,7 +72,6 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:background="@drawable/light_gray_border"
                 android:orientation="vertical">
 
                 <TextView
@@ -81,6 +80,7 @@
                     android:layout_weight="1"
                     android:gravity="center"
                     android:text="@string/new_words"
+                    android:textColor="@color/standardLightText"
                     android:textSize="12sp"
                     android:textStyle="bold" />
 
@@ -91,7 +91,7 @@
                     android:layout_weight="1"
                     android:gravity="center_horizontal|top"
                     android:text="@string/loading"
-                    android:textColor="@color/standardGray"
+                    android:textColor="@color/standardBlue"
                     android:textSize="22sp"
                     android:textStyle="bold" />
 
@@ -101,7 +101,6 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:background="@drawable/light_gray_border"
                 android:orientation="vertical">
 
                 <TextView
@@ -110,6 +109,7 @@
                     android:layout_weight="1"
                     android:gravity="center"
                     android:text="@string/evaluation"
+                    android:textColor="@color/standardLightText"
                     android:textSize="12sp"
                     android:textStyle="bold" />
 

@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.RotateAnimation;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -19,12 +20,13 @@ import java.util.Calendar;
 
 public class RefreshViewHeader extends LinearLayout implements IHeaderCallBack {
     private ViewGroup mContent;
+    private ImageView imgDirectionArrow;
     private ProgressBar mProgressBar;
     private TextView tvRefreshState;
     private TextView tvLastRefreshTime;
     private Animation mRotateUpAnim;
     private Animation mRotateDownAnim;
-    private final int ROTATE_ANIM_DURATION = 180;
+    private final int ROTATE_ANIM_DURATION = 160;
 
     public RefreshViewHeader(Context context) {
         super(context);
@@ -36,8 +38,14 @@ public class RefreshViewHeader extends LinearLayout implements IHeaderCallBack {
         initView(context);
     }
 
+    public RefreshViewHeader(Context context, AttributeSet attrs, int defStyleAttr) {
+        super(context, attrs, defStyleAttr);
+        initView(context);
+    }
+
     private void initView(Context context) {
         mContent = (ViewGroup) LayoutInflater.from(context).inflate(R.layout.rfv_header, this);
+        imgDirectionArrow = (ImageView) findViewById(R.id.imgDirectionArrow);
         tvRefreshState = (TextView) findViewById(R.id.tvRefreshState);
         tvLastRefreshTime = (TextView) findViewById(R.id.tvLastRefreshTime);
         mProgressBar = (ProgressBar) findViewById(R.id.rfv_header_progressbar);
@@ -47,9 +55,8 @@ public class RefreshViewHeader extends LinearLayout implements IHeaderCallBack {
         mRotateUpAnim.setDuration(ROTATE_ANIM_DURATION);
         mRotateUpAnim.setFillAfter(true);
         mRotateDownAnim = new RotateAnimation(-180.0f, 0.0f,
-                Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF,
-                0.5f);
-        mRotateDownAnim.setDuration(0);
+                Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
+        mRotateDownAnim.setDuration(ROTATE_ANIM_DURATION);
         mRotateDownAnim.setFillAfter(true);
     }
 
@@ -91,12 +98,17 @@ public class RefreshViewHeader extends LinearLayout implements IHeaderCallBack {
     @Override
     public void onStateNormal() {
         mProgressBar.setVisibility(View.GONE);
+        imgDirectionArrow.setVisibility(View.VISIBLE);
+        imgDirectionArrow.startAnimation(mRotateDownAnim);
         tvRefreshState.setText(R.string.pull_down_to_refresh);
     }
 
     @Override
     public void onStateReady() {
         mProgressBar.setVisibility(View.GONE);
+        imgDirectionArrow.setVisibility(View.VISIBLE);
+        imgDirectionArrow.clearAnimation();
+        imgDirectionArrow.startAnimation(mRotateUpAnim);
         tvRefreshState.setText(R.string.release_to_refresh);
         tvLastRefreshTime.setVisibility(View.VISIBLE);
     }
@@ -104,12 +116,15 @@ public class RefreshViewHeader extends LinearLayout implements IHeaderCallBack {
     @Override
     public void onStateRefreshing() {
         mProgressBar.setVisibility(View.VISIBLE);
+        imgDirectionArrow.clearAnimation();
+        imgDirectionArrow.setVisibility(View.GONE);
         tvRefreshState.setText(R.string.loading);
     }
 
     @Override
     public void onStateFinish(boolean success) {
         mProgressBar.setVisibility(View.GONE);
+        imgDirectionArrow.setVisibility(View.GONE);
         tvRefreshState.setText(success ? R.string.loading_success : R.string.loading_failed);
         tvLastRefreshTime.setVisibility(View.GONE);
     }
