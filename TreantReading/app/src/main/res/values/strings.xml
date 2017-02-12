@@ -22,6 +22,7 @@
     <string name="total_words">Total Words</string>
     <string name="new_words">New Words</string>
     <string name="evaluation">Evaluation</string>
-    <string name="image_of_book_cover">Image of book cover</string>
-    <string name="image_of_evaluation">Image of evaluation</string>
+    <string name="image_of_book_cover">Image of Book Cover</string>
+    <string name="image_of_evaluation">Image of Evaluation</string>
+    <string name="image_of_pull_arrow">Image of Pull Arrow</string>
 </resources>

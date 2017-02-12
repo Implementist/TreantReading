@@ -3,16 +3,22 @@
     android:id="@+id/lytHeader"
     android:layout_width="match_parent"
     android:layout_height="70dp"
-    android:background="@android:color/white"
+    android:background="@drawable/bottom_border_only"
     android:baselineAligned="false"
     android:orientation="horizontal">
 
-    <LinearLayout
-        android:id="@+id/left_images"
+    <RelativeLayout
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1"
         android:gravity="end|center_vertical">
+
+        <ImageView
+            android:id="@+id/imgDirectionArrow"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:contentDescription="@string/image_of_pull_arrow"
+            android:src="@drawable/arrow" />
 
         <ProgressBar
             android:id="@+id/rfv_header_progressbar"
@@ -21,7 +27,7 @@
             android:indeterminateDrawable="@drawable/progressbar_rotate"
             android:indeterminateDuration="1600"
             android:visibility="gone" />
-    </LinearLayout>
+    </RelativeLayout>
 
     <LinearLayout
         android:layout_width="0dp"
@@ -36,7 +42,8 @@
             android:id="@+id/tvRefreshState"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/pull_down_to_refresh" />
+            android:text="@string/pull_down_to_refresh"
+            android:textColor="@color/standardBlue" />
 
         <TextView
             android:id="@+id/tvLastRefreshTime"
@@ -44,6 +51,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="3dp"
             android:text="@string/never_refresh"
+            android:textColor="@color/standardBlue"
             android:textSize="12sp" />
     </LinearLayout>
 </LinearLayout>
