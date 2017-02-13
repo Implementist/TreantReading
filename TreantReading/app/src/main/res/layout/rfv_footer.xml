@@ -22,7 +22,7 @@
         android:layout_centerHorizontal="true"
         android:gravity="center"
         android:text="@string/loading_complete"
-        android:textColor="@color/standardBlue" />
+        android:textColor="@color/standardLightText" />
 
     <TextView
         android:id="@+id/tvReleaseToLoadMore"
@@ -31,5 +31,5 @@
         android:layout_centerHorizontal="true"
         android:gravity="center"
         android:text="@string/release_to_load_more"
-        android:textColor="@color/standardBlue" />
+        android:textColor="@color/standardLightText" />
 </RelativeLayout>

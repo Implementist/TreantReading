@@ -43,7 +43,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/pull_down_to_refresh"
-            android:textColor="@color/standardBlue" />
+            android:textColor="@color/standardLightText" />
 
         <TextView
             android:id="@+id/tvLastRefreshTime"
@@ -51,7 +51,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="3dp"
             android:text="@string/never_refresh"
-            android:textColor="@color/standardBlue"
+            android:textColor="@color/standardLightText"
             android:textSize="12sp" />
     </LinearLayout>
 </LinearLayout>
