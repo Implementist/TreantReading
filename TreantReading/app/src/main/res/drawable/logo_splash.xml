@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
     <!-- 底层白色 -->
-    <item android:drawable="@color/standardWhite" />
+    <item android:drawable="@color/standardBlue" />
 
     <!-- 顶层logo居中 -->
     <item>
