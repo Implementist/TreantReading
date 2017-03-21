@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">树人阅读</string>
+    <string name="app_name">木灵阅读</string>
     <string name="book_list">书单</string>
     <string name="favorites">收藏</string>
     <string name="garden">花园</string>
