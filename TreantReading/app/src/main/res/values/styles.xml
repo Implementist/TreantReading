@@ -1,13 +1,7 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-        <!-- Status Bar -->
-        <item name="android:windowTranslucentStatus">true</item>
-        <!-- Navigation Bar -->
-        <item name="android:windowTranslucentNavigation">true</item>
-
-    </style>
+    <style name="AppTheme" parent="Theme.AppCompat.Light" />
 
     <style name="SplashTheme" parent="AppTheme">
         <item name="android:windowBackground">@drawable/logo_splash</item>

@@ -18,7 +18,7 @@
             android:layout_width="36dp"
             android:layout_height="36dp"
             android:contentDescription="@string/image_of_pull_arrow"
-            android:src="@drawable/arrow" />
+            android:src="@drawable/ic_arrow_down" />
 
         <ProgressBar
             android:id="@+id/rfv_header_progressbar"
