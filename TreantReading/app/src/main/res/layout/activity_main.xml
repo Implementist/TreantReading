@@ -1,10 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context="com.implementist.treantreading.activity.MainActivity">
+
+    <!-- elevation值是Z轴的一部分，可以用来实现阴影 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="@color/standardBlue"
+        android:elevation="5dp"
+        android:gravity="center|bottom">
+
+        <TextView
+            android:id="@+id/tvTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="2dp"
+            android:text="@string/app_name"
+            android:textColor="@color/standardWhite"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+    </LinearLayout>
 
     <FrameLayout
         android:id="@+id/main_content"
@@ -12,59 +32,12 @@
         android:layout_height="0dp"
         android:layout_weight="1" />
 
-    <RadioGroup
-        android:id="@+id/tab_menu"
+    <android.support.design.widget.BottomNavigationView
+        android:id="@+id/navigation"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:orientation="horizontal">
-
-        <RadioButton
-            android:id="@+id/rbBookList"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="@drawable/backcolor_selector_blue_to_white"
-            android:button="@null"
-            android:checked="true"
-            android:gravity="center"
-            android:text="@string/book_list"
-            android:textColor="@drawable/text_color_selector"
-            android:textSize="20sp" />
-
-        <RadioButton
-            android:id="@+id/rbMyBooks"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="@drawable/backcolor_selector_blue_to_white"
-            android:button="@null"
-            android:gravity="center"
-            android:text="@string/favorites"
-            android:textColor="@drawable/text_color_selector"
-            android:textSize="20sp" />
-
-        <RadioButton
-            android:id="@+id/rbGarden"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="@drawable/backcolor_selector_blue_to_white"
-            android:button="@null"
-            android:gravity="center"
-            android:text="@string/garden"
-            android:textColor="@drawable/text_color_selector"
-            android:textSize="20sp" />
-
-        <RadioButton
-            android:id="@+id/rbSettings"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="@drawable/backcolor_selector_blue_to_white"
-            android:button="@null"
-            android:gravity="center"
-            android:text="@string/me"
-            android:textColor="@drawable/text_color_selector"
-            android:textSize="20sp" />
-    </RadioGroup>
+        android:layout_height="wrap_content"
+        android:background="?android:attr/windowBackground"
+        app:itemIconTint="@drawable/nav_color_selector"
+        app:itemTextColor="@drawable/nav_color_selector"
+        app:menu="@menu/navigation" />
 </LinearLayout>
