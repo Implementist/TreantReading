@@ -1,2 +1,2 @@
-# TreantReading
-Treant Reading project repository
+# iReading
+iReading project repository
