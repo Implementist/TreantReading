@@ -8,6 +8,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
+import com.implementist.ireading.MyApplication;
 import com.implementist.ireading.R;
 import com.implementist.ireading.Utils;
 import com.implementist.ireading.fragment.BookListFragment;
@@ -78,26 +79,53 @@ public class MainActivity extends BaseActivity implements
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+
+        int[] slideAnimation;
+
         switch (item.getItemId()) {
             case R.id.navigation_bookList:
                 tvTitle.setText(getResources().getString(R.string.book_list));
+
+                //TODO: The following method will call onCreate again.Try any other implement method.
                 if (null == bookListFragment)
                     bookListFragment = new BookListFragment();
 
+                //通过简直映射得到动画数组
+                slideAnimation = Utils.getSlideAnimationByCalculate(
+                        MyApplication.FRAGMENT_MAP.get("BookList"),
+                        MyApplication.FRAGMENT_MAP.get(MyApplication.lastFragment)
+                );
+
+                //带动画替换Fragment
                 getSupportFragmentManager()
                         .beginTransaction()
+                        .setCustomAnimations(slideAnimation[0], slideAnimation[1])
                         .replace(R.id.main_content, bookListFragment)
                         .commit();
+
+                //更改当前Fragment全局变量
+                MyApplication.lastFragment = "BookList";
+
                 return true;
+
             case R.id.navigation_favorites:
                 tvTitle.setText(getResources().getString(R.string.favorites));
                 if (null == favoritesFragment)
                     favoritesFragment = new FavoritesFragment();
 
+                slideAnimation = Utils.getSlideAnimationByCalculate(
+                        MyApplication.FRAGMENT_MAP.get("Favorites"),
+                        MyApplication.FRAGMENT_MAP.get(MyApplication.lastFragment)
+                );
+
                 getSupportFragmentManager()
                         .beginTransaction()
+                        .setCustomAnimations(slideAnimation[0], slideAnimation[1])
                         .replace(R.id.main_content, favoritesFragment)
                         .commit();
+
+                MyApplication.lastFragment = "Favorites";
+
                 return true;
             case R.id.navigation_garden:
                 tvTitle.setText(getResources().getString(R.string.garden));

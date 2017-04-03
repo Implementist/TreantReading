@@ -59,10 +59,10 @@ public class BookListFragment extends BaseFragment implements XRefreshView.XRefr
         xRefreshView.setPullLoadEnable(true);
         xRefreshView.setAutoLoadMore(true);
 
-        //set custom header
+        //设置自定义页头
         xRefreshView.setCustomHeaderView(new RefreshViewHeader(view.getContext()));
 
-        //set custom footer
+        //设置自定义页脚
         adapter.setCustomLoadMoreView(new RefreshViewFooter(view.getContext()));
 
         xRefreshView.enableReleaseToLoadMore(true);
@@ -85,12 +85,6 @@ public class BookListFragment extends BaseFragment implements XRefreshView.XRefr
 
     @Override
     public void widgetOnClick(View v) {
-        //switch (v.getId()) {
-        //case R.id.button:
-        //startActivity(MainActivity.class);
-        //Log.i("Test", "Test Message");
-        //break;
-        //}
     }
 
     private void initData() {
