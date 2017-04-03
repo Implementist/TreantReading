@@ -1,0 +1,23 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.implementist.ireading.fragment.BookListFragment">
+
+    <com.andview.refreshview.XRefreshView
+        android:id="@+id/refrvBookList"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/standardWhite">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recvBookList"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="1dp"
+            android:layout_marginTop="1dp"
+            android:background="@color/standardWhite"
+            android:scrollbars="none" />
+    </com.andview.refreshview.XRefreshView>
+</LinearLayout>

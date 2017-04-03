@@ -1,0 +1,15 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light" />
+
+    <style name="SplashTheme" parent="AppTheme">
+        <!-- 设置无标题 -->
+        <item name="android:windowNoTitle">true</item>
+        <!-- 设置全屏 -->
+        <item name="android:windowFullscreen">true</item>
+        <!-- 设置背景 -->
+        <item name="android:windowBackground">@drawable/logo_splash</item>
+    </style>
+
+</resources>
