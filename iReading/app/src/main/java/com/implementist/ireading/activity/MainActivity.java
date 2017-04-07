@@ -12,7 +12,7 @@ import com.implementist.ireading.MyApplication;
 import com.implementist.ireading.R;
 import com.implementist.ireading.Utils;
 import com.implementist.ireading.fragment.BookListFragment;
-import com.implementist.ireading.fragment.FavoritesFragment;
+import com.implementist.ireading.fragment.UnregisteredFavoritesFragment;
 
 /**
  * Copyright © 2017 Implementist. All rights reserved.
@@ -22,7 +22,7 @@ public class MainActivity extends BaseActivity implements
         BottomNavigationView.OnNavigationItemSelectedListener {
 
     private BookListFragment bookListFragment;
-    private FavoritesFragment favoritesFragment;
+    private UnregisteredFavoritesFragment unregisteredFavoritesFragment;
     private BottomNavigationView navigation;
     private TextView tvTitle;
 
@@ -49,7 +49,7 @@ public class MainActivity extends BaseActivity implements
     @Override
     public void initView(View view) {
         bookListFragment = new BookListFragment();
-        favoritesFragment = new FavoritesFragment();
+        unregisteredFavoritesFragment = new UnregisteredFavoritesFragment();
         getSupportFragmentManager()
                 .beginTransaction()
                 .replace(R.id.main_content, bookListFragment)
@@ -110,8 +110,8 @@ public class MainActivity extends BaseActivity implements
 
             case R.id.navigation_favorites:
                 tvTitle.setText(getResources().getString(R.string.favorites));
-                if (null == favoritesFragment)
-                    favoritesFragment = new FavoritesFragment();
+                if (null == unregisteredFavoritesFragment)
+                    unregisteredFavoritesFragment = new UnregisteredFavoritesFragment();
 
                 slideAnimation = Utils.getSlideAnimationByCalculate(
                         MyApplication.FRAGMENT_MAP.get("Favorites"),
@@ -121,7 +121,7 @@ public class MainActivity extends BaseActivity implements
                 getSupportFragmentManager()
                         .beginTransaction()
                         .setCustomAnimations(slideAnimation[0], slideAnimation[1])
-                        .replace(R.id.main_content, favoritesFragment)
+                        .replace(R.id.main_content, unregisteredFavoritesFragment)
                         .commit();
 
                 MyApplication.lastFragment = "Favorites";

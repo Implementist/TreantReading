@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    android:orientation="vertical"
+    tools:context="com.implementist.ireading.activity.LoginActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:background="@color/standardWhite"
+        android:baselineAligned="false"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/txtBackFromLogin"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:background="@drawable/bg_transparent_to_gray"
+            android:clickable="true"
+            android:gravity="center_vertical"
+            android:text="@string/log_in"
+            android:textColor="@color/standardLightText"
+            android:textSize="20sp" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+        <TextView
+            android:id="@+id/txtRegister"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:background="@drawable/bg_transparent_to_gray"
+            android:clickable="true"
+            android:gravity="center_vertical"
+            android:text="@string/register_now"
+            android:textColor="@color/standardLightText"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+    <RadioGroup
+        android:id="@+id/rdgLoginTab"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_marginTop="1dp"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/rbLoginByPassword"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/bg_white_to_blue"
+            android:button="@null"
+            android:checked="true"
+            android:gravity="center"
+            android:text="@string/log_in_by_password"
+            android:textColor="@color/color_blue_to_white"
+            android:textSize="14sp" />
+
+        <RadioButton
+            android:id="@+id/rbLoginByPhone"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/bg_white_to_blue"
+            android:button="@null"
+            android:gravity="center"
+            android:text="@string/log_in_by_phone"
+            android:textColor="@color/color_blue_to_white"
+            android:textSize="14sp" />
+    </RadioGroup>
+
+    <FrameLayout
+        android:id="@+id/lytLoginContent"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="12dp"
+        android:layout_weight="1" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"
+            android:text="@string/login_indicates_that_you_have_agreed_to"
+            android:textColor="@color/standardDarkGray"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/txtLoginUserAgreement"
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"
+            android:background="@drawable/bg_transparent_to_gray"
+            android:clickable="true"
+            android:text="@string/user_agreement"
+            android:textColor="@color/standardBlue"
+            android:textSize="12sp" />
+    </LinearLayout>
+</LinearLayout>

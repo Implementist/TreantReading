@@ -25,4 +25,18 @@
     <string name="image_of_book_cover">Image of Book Cover</string>
     <string name="image_of_evaluation">Image of Evaluation</string>
     <string name="image_of_pull_arrow">Image of Pull Arrow</string>
+    <string name="log_in">Login</string>
+    <string name="register_now">Register</string>
+    <string name="log_in_by_password">Login by Password</string>
+    <string name="log_in_by_phone">Login by Phone</string>
+    <string name="login_indicates_that_you_have_agreed_to">Login Indicates That You Have Agreed To</string>
+    <string name="user_agreement">iReading User Agreement</string>
+    <string name="username_or_phone_or_email">User Name/Phone Number/Email Address</string>
+    <string name="image_of_clear_text">Image of Clear Text</string>
+    <string name="password">Password</string>
+    <string name="retrieve_password">Retrieve Password</string>
+    <string name="please_enter_your_phone_number">Please Enter Your Phone Number</string>
+    <string name="get_security_code">Get Security Code</string>
+    <string name="please_enter_your_security_code">Please Enter Your Security Code</string>
+    <string name="auto_create_account">Unregistered Phone Number Will Be Auto Registered as A iReading Account</string>
 </resources>
