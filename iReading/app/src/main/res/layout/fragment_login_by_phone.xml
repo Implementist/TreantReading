@@ -1,0 +1,102 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.implementist.ireading.fragment.LoginByPhoneFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="52dp"
+        android:background="@color/standardWhite"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <AutoCompleteTextView
+            android:id="@+id/atxtPhoneNumber"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:background="@null"
+            android:hint="@string/please_enter_your_phone_number"
+            android:inputType="phone"
+            android:textSize="15sp" />
+
+        <ImageView
+            android:id="@+id/imgClearPhoneNumber"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:clickable="true"
+            android:contentDescription="@string/image_of_clear_text"
+            android:scaleType="fitXY"
+            android:src="@drawable/ic_delete"
+            android:visibility="invisible" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center">
+
+            <Button
+                android:id="@+id/btnSecurityCode"
+                android:layout_width="wrap_content"
+                android:layout_height="36dp"
+                android:background="@drawable/btn_color_selector"
+                android:gravity="center"
+                android:text="@string/get_security_code"
+                android:textColor="@color/standardWhite" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="52dp"
+        android:layout_marginTop="1dp"
+        android:background="@color/standardWhite"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/editSecurityCode"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@null"
+            android:hint="@string/please_enter_your_security_code"
+            android:inputType="number"
+            android:textSize="15sp" />
+
+        <ImageView
+            android:id="@+id/imgClearSecurityCode"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginEnd="16dp"
+            android:clickable="true"
+            android:contentDescription="@string/image_of_clear_text"
+            android:scaleType="fitXY"
+            android:src="@drawable/ic_delete"
+            android:visibility="invisible" />
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:gravity="center_vertical"
+        android:text="@string/auto_create_account"
+        android:textSize="12sp" />
+
+    <Button
+        android:id="@+id/btnLoginByPhone"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="12dp"
+        android:background="@color/standardBlue"
+        android:text="@string/log_in"
+        android:textColor="@color/standardWhite"
+        android:textSize="16sp"
+        android:textStyle="bold" />
+
+</LinearLayout>

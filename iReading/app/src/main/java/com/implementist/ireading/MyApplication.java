@@ -34,7 +34,6 @@ public class MyApplication extends Application {
         lastFragment = "BookList";
 
         requestQueue = Volley.newRequestQueue(getApplicationContext());
-        requestQueue.start();
     }
 
     public static RequestQueue getRequestQueue() {

@@ -8,6 +8,9 @@ import android.support.design.widget.BottomNavigationView;
 import com.implementist.ireading.activity.MainActivity;
 
 import java.lang.reflect.Field;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import java.util.regex.PatternSyntaxException;
 
 public class Utils {
 
@@ -73,5 +76,28 @@ public class Utils {
             return new int[]{R.anim.slide_in_right, R.anim.slide_out_left};
         else
             return new int[]{R.anim.slide_in_left, R.anim.slide_out_right};
+    }
+
+    public static int judgeLoginType(String accountNumber) {
+        if (isPhoneNumber(accountNumber))
+            return 0;
+        else if (isEmailAddress(accountNumber))
+            return 1;
+        else
+            return 2;
+    }
+
+    public static boolean isPhoneNumber(String str) throws PatternSyntaxException {
+        String regExp = "^((13[0-9])|(15[^4])|(18[0,2,3,5-9])|(17[0-8])|(147))\\d{8}$";
+        Pattern pattern = Pattern.compile(regExp);
+        Matcher matcher = pattern.matcher(str);
+        return matcher.matches();
+    }
+
+    private static boolean isEmailAddress(String str) throws PatternSyntaxException {
+        String regExp = "^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\\.[a-zA-Z0-9_-]+)+$";
+        Pattern pattern = Pattern.compile(regExp);
+        Matcher matcher = pattern.matcher(str);
+        return matcher.matches();
     }
 }  

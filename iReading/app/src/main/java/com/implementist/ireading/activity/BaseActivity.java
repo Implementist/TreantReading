@@ -20,11 +20,11 @@ public abstract class BaseActivity extends FragmentActivity implements View.OnCl
     /**
      * 是否沉浸状态栏
      **/
-    protected boolean isSetStatusBar = true;
+    protected boolean isSetStatusBar = false;
     /**
      * 是否允许全屏
      **/
-    private boolean mAllowFullScreen = true;
+    private boolean mAllowFullScreen = false;
     /**
      * 是否禁止旋转屏幕
      **/
@@ -79,9 +79,6 @@ public abstract class BaseActivity extends FragmentActivity implements View.OnCl
     private void steepStatusBar() {
         // 透明状态栏
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-        // 透明导航栏
-        getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
-
     }
 
     /**
@@ -215,7 +212,7 @@ public abstract class BaseActivity extends FragmentActivity implements View.OnCl
      *
      * @param msg 信息
      */
-    protected void showToast(String msg) {
+    public void showToast(String msg) {
         Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
     }
 

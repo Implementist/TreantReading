@@ -10,10 +10,10 @@
     <!-- elevation值是Z轴的一部分，可以用来实现阴影 -->
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="40dp"
         android:background="@color/standardBlue"
         android:elevation="5dp"
-        android:gravity="center|bottom">
+        android:gravity="center">
 
         <TextView
             android:id="@+id/tvTitle"
@@ -37,7 +37,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="?android:attr/windowBackground"
-        app:itemIconTint="@drawable/nav_color_selector"
-        app:itemTextColor="@drawable/nav_color_selector"
+        app:itemIconTint="@color/nav_color_selector"
+        app:itemTextColor="@color/nav_color_selector"
         app:menu="@menu/navigation" />
 </LinearLayout>
