@@ -22,24 +22,35 @@ public abstract class BaseFragment extends Fragment implements View.OnClickListe
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        mContextView = inflater.inflate(bindLayout(), container, false);
-        initView(mContextView);
-        setListener();
-        doBusiness(getActivity());
+
+        //这一组嵌套判断是为了避免Fragment在replace时重复加载onCreateView方法
+        if (null == mContextView) {
+            mContextView = inflater.inflate(bindLayout(), container, false);
+            initView(mContextView);
+            setListener();
+            doBusiness(getActivity());
+        } else {
+            //缓存的mContextView需要判断是否已经被加过parent，如果有parent需要从parent删除，
+            //否则会发生这个mContextView已经有parent的错误。
+            ViewGroup parent = (ViewGroup) mContextView.getParent();
+            if (null != parent) {
+                parent.removeView(mContextView);
+            }
+        }
         return mContextView;
     }
 
     /**
      * [绑定布局]
      *
-     * @return
+     * @return 布局文件编号
      */
     public abstract int bindLayout();
 
     /**
      * [初始化控件]
      *
-     * @param view
+     * @param view 此Fragment的实例
      */
     public abstract void initView(final View view);
 
@@ -48,6 +59,7 @@ public abstract class BaseFragment extends Fragment implements View.OnClickListe
      *
      * @param resId 资源Id
      */
+    @SuppressWarnings("unchecked")
     protected <T extends View> T $(int resId) {
         return (T) mContextView.findViewById(resId);
     }
@@ -60,7 +72,7 @@ public abstract class BaseFragment extends Fragment implements View.OnClickListe
     /**
      * [业务操作]
      *
-     * @param mContext
+     * @param mContext 容器Activity
      */
     public abstract void doBusiness(Context mContext);
 
@@ -83,7 +95,7 @@ public abstract class BaseFragment extends Fragment implements View.OnClickListe
     /**
      * [防止快速点击]
      *
-     * @return
+     * @return 是否允许连续点击
      */
     private boolean fastClick() {
         long lastClick = 0;

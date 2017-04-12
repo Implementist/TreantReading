@@ -6,9 +6,24 @@
     android:orientation="vertical"
     tools:context="com.implementist.ireading.fragment.UnregisteredFavoritesFragment">
 
-    <Button
-        android:id="@+id/btnLogin"
+    <ImageView
+        android:layout_width="128dp"
+        android:layout_height="128dp"
+        android:contentDescription="@string/image_of_user"
+        android:src="@drawable/ic_user" />
+
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/log_in" />
+        android:text="@string/log_in_to_browse_favorites" />
+
+    <Button
+        android:id="@+id/btnLogin"
+        android:layout_width="135dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:background="@drawable/btn_color_selector"
+        android:text="@string/log_in_now"
+        android:textColor="@color/standardWhite"
+        android:textSize="18sp" />
 </LinearLayout>

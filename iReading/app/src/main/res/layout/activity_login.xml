@@ -95,7 +95,7 @@
             android:layout_width="wrap_content"
             android:layout_height="20dp"
             android:text="@string/login_indicates_that_you_have_agreed_to"
-            android:textColor="@color/standardDarkGray"
+            android:textColor="@color/standardLightText"
             android:textSize="12sp" />
 
         <TextView
