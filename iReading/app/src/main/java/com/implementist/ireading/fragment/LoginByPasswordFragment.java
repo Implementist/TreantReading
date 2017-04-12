@@ -35,7 +35,8 @@ import java.util.Map;
 public class LoginByPasswordFragment extends BaseFragment implements TextWatcher,
         LoadingButton.AnimationEndListener {
 
-    final static String[] RequestType = {"LoginByPhoneNumber", "LoginByEmailAddress", "LoginByUserName"};
+    private final static String[] LOGIN_TYPE = {
+            "LoginByPhoneNumber", "LoginByEmailAddress", "LoginByUserName"};
 
     private AutoCompleteTextView atxtAccountNumber;
     private EditText editPassword;
@@ -127,10 +128,10 @@ public class LoginByPasswordFragment extends BaseFragment implements TextWatcher
     }
 
     // 定义POST请求的方法
-    private void VolleyPost(final int loginType) {
+    private void VolleyPost(final int typeID) {
         //请求地址
         String url = "http://ireading.imwork.net/iReading/*";
-        String tag = RequestType[loginType];
+        String tag = LOGIN_TYPE[typeID];
 
         //取得请求队列
         RequestQueue requestQueue = MyApplication.getRequestQueue();
@@ -150,8 +151,6 @@ public class LoginByPasswordFragment extends BaseFragment implements TextWatcher
                                 btnLoginByPassword.loadingSuccessful();
                             } else {
                                 ((LoginActivity) getActivity()).showToast("账号或密码错误，请重新输入");
-                                atxtAccountNumber.setText("");
-                                editPassword.setText("");
                                 btnLoginByPassword.loadingFailed();
                             }
                         } catch (JSONException e) {
@@ -172,7 +171,7 @@ public class LoginByPasswordFragment extends BaseFragment implements TextWatcher
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<>();
                 params.put("RequestType", "Login");
-                params.put("LoginType", RequestType[loginType]);
+                params.put("LoginType", LOGIN_TYPE[typeID]);
                 params.put("AccountNumber", atxtAccountNumber.getText().toString());
                 params.put("Password", editPassword.getText().toString());
                 return params;

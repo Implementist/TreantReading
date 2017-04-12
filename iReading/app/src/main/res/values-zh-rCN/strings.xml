@@ -25,7 +25,10 @@
     <string name="evaluation">评分</string>
     <string name="image_of_book_cover">书籍封面</string>
     <string name="image_of_evaluation">书籍评价</string>
+    <string name="image_of_user">用户图标</string>
+    <string name="image_of_info">信息图标</string>
     <string name="log_in">登录</string>
+    <string name="log_in_now">立即登录</string>
     <string name="register_now">立即注册</string>
     <string name="log_in_by_password">账号密码登录</string>
     <string name="log_in_by_phone">手机号快捷登录</string>
@@ -39,4 +42,5 @@
     <string name="get_security_code">获取验证码</string>
     <string name="please_enter_your_security_code">请输入您的验证码</string>
     <string name="auto_create_account">未注册过的手机号将被自动创建为iReading账户</string>
+    <string name="log_in_to_browse_favorites">登录后浏览收藏</string>
 </resources>
