@@ -3,10 +3,13 @@ package com.implementist.ireading.fragment;
 
 import android.content.Context;
 import android.text.Editable;
+import android.text.InputType;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.widget.AutoCompleteTextView;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -33,7 +36,7 @@ import java.util.Map;
  * Copyright © 2017 Implementist. All rights reserved.
  */
 public class LoginByPasswordFragment extends BaseFragment implements TextWatcher,
-        LoadingButton.AnimationEndListener {
+        LoadingButton.AnimationEndListener, CompoundButton.OnCheckedChangeListener {
 
     private final static String[] LOGIN_TYPE = {
             "LoginByPhoneNumber", "LoginByEmailAddress", "LoginByUserName"};
@@ -43,6 +46,7 @@ public class LoginByPasswordFragment extends BaseFragment implements TextWatcher
     private LoadingButton btnLoginByPassword;
     private TextView txtRetrievePassword;
     private ImageView imgClearAccountNumber, imgClearPassword;
+    private CheckBox cbxPasswordVisibility;
 
     @Override
     public int bindLayout() {
@@ -57,6 +61,7 @@ public class LoginByPasswordFragment extends BaseFragment implements TextWatcher
         txtRetrievePassword = (TextView) view.findViewById(R.id.txtRetrievePassword);
         imgClearAccountNumber = (ImageView) view.findViewById(R.id.imgClearAccountNumber);
         imgClearPassword = (ImageView) view.findViewById(R.id.imgClearPassword);
+        cbxPasswordVisibility = (CheckBox) view.findViewById(R.id.cbxPasswordVisibility);
     }
 
     @Override
@@ -68,6 +73,7 @@ public class LoginByPasswordFragment extends BaseFragment implements TextWatcher
         imgClearAccountNumber.setOnClickListener(this);
         editPassword.addTextChangedListener(this);
         imgClearPassword.setOnClickListener(this);
+        cbxPasswordVisibility.setOnCheckedChangeListener(this);
     }
 
     @Override
@@ -189,5 +195,16 @@ public class LoginByPasswordFragment extends BaseFragment implements TextWatcher
     public void onAnimationEnd(LoadingButton.AnimationType animationType) {
         if (animationType == LoadingButton.AnimationType.SUCCESSFUL)
             getActivity().finish();
+    }
+
+    @Override
+    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+        if (!isChecked) {
+            editPassword.setInputType(InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
+            cbxPasswordVisibility.setBackgroundResource(R.drawable.ic_visible);
+        } else {
+            editPassword.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+            cbxPasswordVisibility.setBackgroundResource(R.drawable.ic_invisible);
+        }
     }
 }
