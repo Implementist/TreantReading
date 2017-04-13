@@ -133,6 +133,23 @@ public class LoginByPasswordFragment extends BaseFragment implements TextWatcher
             imgClearPassword.setVisibility(View.INVISIBLE);
     }
 
+    @Override
+    public void onAnimationEnd(LoadingButton.AnimationType animationType) {
+        if (animationType == LoadingButton.AnimationType.SUCCESSFUL)
+            getActivity().finish();
+    }
+
+    @Override
+    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+        if (!isChecked) {
+            editPassword.setInputType(InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
+            cbxPasswordVisibility.setBackgroundResource(R.drawable.ic_visible);
+        } else {
+            editPassword.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+            cbxPasswordVisibility.setBackgroundResource(R.drawable.ic_invisible);
+        }
+    }
+
     // 定义POST请求的方法
     private void VolleyPost(final int typeID) {
         //请求地址
@@ -189,22 +206,5 @@ public class LoginByPasswordFragment extends BaseFragment implements TextWatcher
 
         //将请求添加到队列中
         requestQueue.add(request);
-    }
-
-    @Override
-    public void onAnimationEnd(LoadingButton.AnimationType animationType) {
-        if (animationType == LoadingButton.AnimationType.SUCCESSFUL)
-            getActivity().finish();
-    }
-
-    @Override
-    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-        if (!isChecked) {
-            editPassword.setInputType(InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
-            cbxPasswordVisibility.setBackgroundResource(R.drawable.ic_visible);
-        } else {
-            editPassword.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
-            cbxPasswordVisibility.setBackgroundResource(R.drawable.ic_invisible);
-        }
     }
 }
