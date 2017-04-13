@@ -82,7 +82,7 @@ public class RegisterStep2Fragment extends BaseFragment implements TextWatcher {
 
             case R.id.btnRegisterSubmitSecurityCode:
                 //TODO: 对照已经发送到客户端的验证码和信息中的验证码是否一致，对就跳转，不对就Toast
-                //TODO:以下两行为测试代码，测试后请删除
+                //TODO:以下两行为测试代码，功能是跳过验证，直接跳转到第三步
                 ((RegisterActivity) getActivity()).frgRegisterStep3 = RegisterStep3Fragment.newInstance(strPhoneNumber);
                 //改变选中的radioButton，跳转页面
                 ((RadioButton) getActivity().findViewById(R.id.rbStep3)).setChecked(true);
