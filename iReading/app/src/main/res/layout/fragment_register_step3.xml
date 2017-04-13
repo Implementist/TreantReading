@@ -1,0 +1,88 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.implementist.ireading.fragment.RegisterStep3Fragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/button_and_edit"
+        android:layout_marginBottom="2dp"
+        android:layout_marginTop="15dp"
+        android:background="@color/standardWhite"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/editRegisterPassword"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginStart="4dp"
+            android:layout_weight="1"
+            android:background="@null"
+            android:gravity="center_vertical"
+            android:hint="@string/please_enter_your_password"
+            android:inputType="textPassword"
+            android:textSize="16sp" />
+
+        <ImageView
+            android:id="@+id/imgRegisterClearPassword"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginBottom="4dp"
+            android:layout_marginEnd="4dp"
+            android:clickable="true"
+            android:contentDescription="@string/image_of_clear_text"
+            android:scaleType="fitXY"
+            android:src="@drawable/ic_delete"
+            android:visibility="invisible" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/button_and_edit"
+        android:layout_marginBottom="4dp"
+        android:background="@color/standardWhite"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/editRegisterRepeat"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginStart="4dp"
+            android:layout_weight="1"
+            android:background="@null"
+            android:gravity="center_vertical"
+            android:hint="@string/please_repeat_your_password"
+            android:inputType="textPassword"
+            android:textSize="16sp" />
+
+        <ImageView
+            android:id="@+id/imgRegisterClearRepeat"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginBottom="4dp"
+            android:layout_marginEnd="4dp"
+            android:clickable="true"
+            android:contentDescription="@string/image_of_clear_text"
+            android:scaleType="fitXY"
+            android:src="@drawable/ic_delete"
+            android:visibility="invisible" />
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btnRegister"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/button_and_edit"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="12dp"
+        android:background="@drawable/btn_color_selector"
+        android:text="@string/register"
+        android:textColor="@color/standardWhite"
+        android:textSize="18sp" />
+</LinearLayout>

@@ -43,6 +43,16 @@ public abstract class BaseActivity extends FragmentActivity implements View.OnCl
      **/
     public abstract void widgetOnClick(View v);
 
+    /**
+     * 上次showToast的时间
+     **/
+    protected long lastTime;
+
+    /**
+     * 上次showToast显示的文本
+     **/
+    protected String lastMsg;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -213,7 +223,12 @@ public abstract class BaseActivity extends FragmentActivity implements View.OnCl
      * @param msg 信息
      */
     public void showToast(String msg) {
-        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
+        //此判断为了防止用户无限点击按钮造成Toast多次执行
+        if (!msg.equals(lastMsg) || System.currentTimeMillis() - lastTime > 2000) {
+            Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
+            lastTime = System.currentTimeMillis();
+            lastMsg = msg;
+        }
     }
 
     /**

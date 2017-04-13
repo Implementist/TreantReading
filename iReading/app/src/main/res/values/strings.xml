@@ -28,8 +28,12 @@
     <string name="image_of_clear_text">Image of Clear Text</string>
     <string name="image_of_user">Image of User</string>
     <string name="image_of_info">Image of Info</string>
+    <string name="image_of_password_visibility">Image of Password Visibility</string>
+    <string name="image_of_backward_arrow">Image of Backward Arrow</string>
+    <string name="image_of_forward_arrow">Image of Forward Arrow</string>
     <string name="log_in">Login</string>
     <string name="log_in_now">Login Now</string>
+    <string name="register">Register</string>
     <string name="register_now">Register</string>
     <string name="log_in_by_password">Login by Password</string>
     <string name="log_in_by_phone">Login by Phone</string>
@@ -43,4 +47,11 @@
     <string name="please_enter_your_security_code">Please Enter Your Security Code</string>
     <string name="auto_create_account">Unregistered Phone Number Will Be Auto Registered as A iReading Account</string>
     <string name="log_in_to_browse_favorites">Login to Browse Favorites</string>
+    <string name="input_phone_number">Input Phone Number</string>
+    <string name="input_security_code">Input Security Code</string>
+    <string name="set_password">Set Password</string>
+    <string name="i_have_read_and_accept">I Have Read and Accept</string>
+    <string name="submit_security_code">Submit Security Code</string>
+    <string name="please_enter_your_password">Please Enter Your Password</string>
+    <string name="please_repeat_your_password">Please Repeat Your Password</string>
 </resources>
