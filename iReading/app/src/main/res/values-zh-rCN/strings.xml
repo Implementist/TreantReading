@@ -30,6 +30,7 @@
     <string name="image_of_password_visibility">密码可见性图标</string>
     <string name="image_of_backward_arrow">退回箭头图标</string>
     <string name="image_of_forward_arrow">前进箭头图标</string>
+    <string name="image_of_add_to_favorite">添加到收藏图标</string>
     <string name="log_in">登录</string>
     <string name="log_in_now">立即登录</string>
     <string name="register">注册</string>
@@ -54,4 +55,8 @@
     <string name="submit_security_code">提交验证码</string>
     <string name="please_enter_your_password">请输入您的密码</string>
     <string name="please_repeat_your_password">请再次输入您的密码</string>
+    <string name="add_to_favorite">添加至收藏</string>
+    <string name="rate_this_book">评价这本书</string>
+    <string name="current_page">页码：</string>
+    <string name="page_count">总页数：</string>
 </resources>
