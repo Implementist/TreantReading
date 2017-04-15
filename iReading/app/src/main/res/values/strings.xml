@@ -31,6 +31,7 @@
     <string name="image_of_password_visibility">Image of Password Visibility</string>
     <string name="image_of_backward_arrow">Image of Backward Arrow</string>
     <string name="image_of_forward_arrow">Image of Forward Arrow</string>
+    <string name="image_of_add_to_favorite">Image of Add To Favorite</string>
     <string name="log_in">Login</string>
     <string name="log_in_now">Login Now</string>
     <string name="register">Register</string>
@@ -54,4 +55,8 @@
     <string name="submit_security_code">Submit Security Code</string>
     <string name="please_enter_your_password">Please Enter Your Password</string>
     <string name="please_repeat_your_password">Please Repeat Your Password</string>
+    <string name="add_to_favorite">add to favorite</string>
+    <string name="rate_this_book">rate this book</string>
+    <string name="current_page">Current Page:</string>
+    <string name="page_count">Page Count:</string>
 </resources>

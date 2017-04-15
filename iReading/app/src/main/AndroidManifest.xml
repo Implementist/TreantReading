@@ -34,9 +34,11 @@
         <activity
             android:name=".activity.LoginActivity"
             android:theme="@style/AppTheme" />
-
         <activity
             android:name=".activity.RegisterActivity"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".activity.ReadingActivity"
             android:theme="@style/AppTheme" />
     </application>
 

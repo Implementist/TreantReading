@@ -8,7 +8,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 import com.andview.refreshview.XRefreshView;
-import com.implementist.ireading.BookData;
+import com.implementist.ireading.Book;
 import com.implementist.ireading.R;
 import com.implementist.ireading.RefreshViewFooter;
 import com.implementist.ireading.RefreshViewHeader;
@@ -25,7 +25,7 @@ public class BookListFragment extends BaseFragment implements XRefreshView.XRefr
 
     RecyclerView recyclerView;
     SimpleAdapter adapter;
-    List<BookData> books = new ArrayList<>();
+    List<Book> books = new ArrayList<>();
     XRefreshView xRefreshView;
 
     LinearLayoutManager layoutManager;
@@ -89,7 +89,13 @@ public class BookListFragment extends BaseFragment implements XRefreshView.XRefr
 
     private void initData() {
         for (int i = 1; i < 6; i++) {
-            BookData book = new BookData(i, "", "Untitled", 98 * i, 5 * i, i - 1);
+            Book book = new Book();
+            book.setId(i);
+            book.setCoverUrl("");
+            book.setTitle("Untitled");
+            book.setTotalWords(98 * i);
+            book.setNewWords(5 * i);
+            book.setEvaluationScore(i - 1);
             books.add(book);
         }
     }
@@ -102,6 +108,11 @@ public class BookListFragment extends BaseFragment implements XRefreshView.XRefr
                 xRefreshView.stopRefresh();
             }
         }, 500);
+    }
+
+    @Override
+    public void onRefresh(boolean isPullDown) {
+
     }
 
     @Override

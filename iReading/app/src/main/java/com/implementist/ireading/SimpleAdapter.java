@@ -1,6 +1,7 @@
 package com.implementist.ireading;
 
 import android.content.Context;
+import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.util.Log;
@@ -11,14 +12,16 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.andview.refreshview.recyclerview.BaseRecyclerAdapter;
+import com.implementist.ireading.activity.MainActivity;
+import com.implementist.ireading.activity.ReadingActivity;
 
 import java.util.List;
 
 public class SimpleAdapter extends BaseRecyclerAdapter<SimpleAdapter.SimpleAdapterViewHolder> {
-    private List<BookData> books;
+    private List<Book> books;
     private int largeCardHeight, smallCardHeight;
 
-    public SimpleAdapter(List<BookData> books, Context context) {
+    public SimpleAdapter(List<Book> books, Context context) {
         this.books = books;
         largeCardHeight = Utils.dip2px(context, 150);
         smallCardHeight = Utils.dip2px(context, 100);
@@ -26,7 +29,7 @@ public class SimpleAdapter extends BaseRecyclerAdapter<SimpleAdapter.SimpleAdapt
 
     @Override
     public void onBindViewHolder(final SimpleAdapterViewHolder holder, final int position, boolean isItem) {
-        BookData book = books.get(position);
+        final Book book = books.get(position);
         //TODO:get image from server and set to the following ImageView
         //holder.imgCover.setImageResource();
 
@@ -60,6 +63,16 @@ public class SimpleAdapter extends BaseRecyclerAdapter<SimpleAdapter.SimpleAdapt
             @Override
             public void onClick(View view) {
                 //TODO: Write action when item is on click
+
+                //TODO: the following raws of code is for testing jump function
+                Bundle bundle = new Bundle();
+                bundle.putString("Title", "Sample");
+                bundle.putString("FileName", "sample.pdf");
+                bundle.putString("Author", "Implementist");
+                bundle.putInt("PageCount", 84);
+                ((MainActivity) holder.rootView.getContext())
+                        .startActivity(ReadingActivity.class, bundle);
+
                 Log.i("Test", String.valueOf(position));
             }
         });
@@ -80,7 +93,7 @@ public class SimpleAdapter extends BaseRecyclerAdapter<SimpleAdapter.SimpleAdapt
         return new SimpleAdapterViewHolder(view, false);
     }
 
-    public void setData(List<BookData> books) {
+    public void setData(List<Book> books) {
         this.books = books;
         notifyDataSetChanged();
     }
@@ -93,7 +106,7 @@ public class SimpleAdapter extends BaseRecyclerAdapter<SimpleAdapter.SimpleAdapt
         return vh;
     }
 
-    public void insert(BookData book, int position) {
+    public void insert(Book book, int position) {
         insert(books, book, position);
     }
 
@@ -128,7 +141,7 @@ public class SimpleAdapter extends BaseRecyclerAdapter<SimpleAdapter.SimpleAdapt
         }
     }
 
-    public BookData getItem(int position) {
+    public Book getItem(int position) {
         if (position < books.size())
             return books.get(position);
         else

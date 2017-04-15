@@ -24,14 +24,28 @@ dependencies {
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
+
     compile 'com.android.support:appcompat-v7:25.3.1'
     compile 'com.android.support.constraint:constraint-layout:1.0.0-beta4'
     compile 'com.android.support:support-v4:25.3.1'
-    compile 'com.huxq17.xrefreshview:xrefreshview:3.6.0'
     compile 'com.android.support:recyclerview-v7:25.3.1'
     compile 'com.android.support:design:25.3.1'
     compile 'com.android.support:support-vector-drawable:25.3.1'
+
+    //GitHub XRefreshView
+    compile 'com.huxq17.xrefreshview:xrefreshview:3.6.5'
+
+    //GitHub DxLoadingButton
     compile 'com.mcxiaoke.volley:library:1.0.19'
+
+    //GitHub Volley
     compile 'com.github.StevenDXC:DxLoadingButton:1.5'
+
+    //GitHub android-pdfview
+    compile 'com.joanzapata.pdfview:android-pdfview:1.0.4@aar'
+
+    //GitHub BubbleSeekBar
+    compile 'com.xw.repo:bubbleseekbar:3.3'
+
     testCompile 'junit:junit:4.12'
 }
