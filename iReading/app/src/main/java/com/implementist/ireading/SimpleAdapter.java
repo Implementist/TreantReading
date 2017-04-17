@@ -14,14 +14,18 @@ import android.widget.TextView;
 import com.andview.refreshview.recyclerview.BaseRecyclerAdapter;
 import com.implementist.ireading.activity.MainActivity;
 import com.implementist.ireading.activity.ReadingActivity;
+import com.liulishuo.filedownloader.BaseDownloadTask;
 
 import java.util.List;
 
 public class SimpleAdapter extends BaseRecyclerAdapter<SimpleAdapter.SimpleAdapterViewHolder> {
+
+    private Context context;
     private List<Book> books;
     private int largeCardHeight, smallCardHeight;
 
     public SimpleAdapter(List<Book> books, Context context) {
+        this.context = context;
         this.books = books;
         largeCardHeight = Utils.dip2px(context, 150);
         smallCardHeight = Utils.dip2px(context, 100);
@@ -62,18 +66,21 @@ public class SimpleAdapter extends BaseRecyclerAdapter<SimpleAdapter.SimpleAdapt
         holder.rootView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //TODO: Write action when item is on click
+                //TODO:以下这部分还需要改，第二个属性应该改为book.contentURL
+                String url = "http://ireading.imwork.net/Files/1.pdf";
 
-                //TODO: the following raws of code is for testing jump function
-                Bundle bundle = new Bundle();
-                bundle.putString("Title", "Sample");
-                bundle.putString("FileName", "sample.pdf");
-                bundle.putString("Author", "Implementist");
-                bundle.putInt("PageCount", 84);
-                ((MainActivity) holder.rootView.getContext())
-                        .startActivity(ReadingActivity.class, bundle);
+                //如果目标文件不存在
+                if (!FileDownloadHelper.isFileExists(url)) {
+                    BaseDownloadTask downloadTask = FileDownloadHelper.createDownloadTask(
+                            url, holder.rootView.getContext(), book);
 
-                Log.i("Test", String.valueOf(position));
+                    int taskID = FileDownloadHelper.initDownloadTask(downloadTask);
+                } else {
+                    FileDownloadHelper.jumpToReadingActivity(holder.rootView.getContext(),
+                            book, FileDownloadHelper.getFileName(url));
+                }
+
+                Log.i("Current Position", String.valueOf(position));
             }
         });
     }
@@ -147,5 +154,4 @@ public class SimpleAdapter extends BaseRecyclerAdapter<SimpleAdapter.SimpleAdapt
         else
             return null;
     }
-
 }
