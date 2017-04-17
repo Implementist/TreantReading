@@ -8,10 +8,13 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.TextView;
 
+import com.implementist.ireading.FileDownloadHelper;
 import com.implementist.ireading.R;
 import com.joanzapata.pdfview.PDFView;
 import com.joanzapata.pdfview.listener.OnPageChangeListener;
 import com.xw.repo.BubbleSeekBar;
+
+import java.io.File;
 
 public class ReadingActivity extends BaseActivity implements OnPageChangeListener,
         CompoundButton.OnCheckedChangeListener, BubbleSeekBar.OnProgressChangedListener {
@@ -59,7 +62,7 @@ public class ReadingActivity extends BaseActivity implements OnPageChangeListene
 
         //配置SeekBar
         skbReadingProgress.getConfigBuilder()
-                .min(0)
+                .min(1)
                 .max(pageCount)
                 .trackSize(4)
                 .secondTrackColor(ContextCompat.getColor(this, R.color.standardWhite))
@@ -88,12 +91,22 @@ public class ReadingActivity extends BaseActivity implements OnPageChangeListene
 
     }
 
-    private void showPDF(String assetFileName, boolean jumpToFirstPage) {
+    /**
+     * 显示PDF文件
+     *
+     * @param fileName        文件名
+     * @param jumpToFirstPage 是否跳至第一页
+     */
+    private void showPDF(String fileName, boolean jumpToFirstPage) {
 
         if (jumpToFirstPage)
             currentPageNumber = 1;
 
-        pdfView.fromAsset(assetFileName)
+        String filePath = FileDownloadHelper.getStoragePath(fileName);
+
+        File file = new File(filePath);
+
+        pdfView.fromFile(file)
                 .defaultPage(currentPageNumber)
                 .onPageChange(this)
                 .load();
@@ -116,6 +129,7 @@ public class ReadingActivity extends BaseActivity implements OnPageChangeListene
 
     @Override
     public void getProgressOnActionUp(int progress, float progressFloat) {
+        //跳转到当前用户进度
         pdfView.jumpTo(userProgress);
     }
 

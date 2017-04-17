@@ -87,15 +87,20 @@ public class BookListFragment extends BaseFragment implements XRefreshView.XRefr
     public void widgetOnClick(View v) {
     }
 
+    /**
+     * 初始化绘本数据
+     */
     private void initData() {
         for (int i = 1; i < 6; i++) {
             Book book = new Book();
             book.setId(i);
             book.setCoverUrl("");
-            book.setTitle("Untitled");
+            book.setTitle("The Ugly Duck");
             book.setTotalWords(98 * i);
             book.setNewWords(5 * i);
             book.setEvaluationScore(i - 1);
+            book.setAuthor("爱迪生");
+            book.setPageCount(41);
             books.add(book);
         }
     }

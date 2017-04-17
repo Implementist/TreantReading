@@ -1,11 +1,14 @@
 package com.implementist.ireading;
 
 import android.app.Application;
+import android.content.Context;
+import android.os.Environment;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
-import com.implementist.ireading.fragment.BookListFragment;
+import com.liulishuo.filedownloader.FileDownloader;
 
+import java.io.File;
 import java.util.HashMap;
 
 /**
@@ -13,6 +16,7 @@ import java.util.HashMap;
  */
 
 public class MyApplication extends Application {
+    //Fragment切换表
     public final static HashMap<String, Integer> FRAGMENT_MAP = new HashMap<String, Integer>() {
         {
             put("BookList", 0);
@@ -22,6 +26,7 @@ public class MyApplication extends Application {
         }
     };
 
+    //记录当前Fragment
     public static String lastFragment;
 
     // 建立请求队列
@@ -34,9 +39,44 @@ public class MyApplication extends Application {
         lastFragment = "BookList";
 
         requestQueue = Volley.newRequestQueue(getApplicationContext());
+
+        //FileDownloader 初始化
+        FileDownloader.init(getApplicationContext());
+
+        //创建外部存储器目标路径
+        createExternalCacheFolders(getApplicationContext());
+
+        //TODO: 初始的时候加载10条数据到BookList中去
     }
 
+    /**
+     * 获取Http请求队列
+     *
+     * @return Http请求队列
+     */
     public static RequestQueue getRequestQueue() {
         return requestQueue;
+    }
+
+    /**
+     * 检查下载路径是否存在，不存在就创建
+     *
+     * @param context 应用程序上下文
+     */
+    private static void createExternalCacheFolders(Context context) {
+        String path = Environment.getExternalStorageDirectory().toString() +
+                File.separator +
+                "Android" +
+                File.separator +
+                "data" +
+                File.separator +
+                "com.implementist.ireading" +
+                File.separator +
+                "cache";
+
+        File file = new File(path);
+
+        if (!file.exists())
+            context.getExternalCacheDir();
     }
 }

@@ -47,5 +47,8 @@ dependencies {
     //GitHub BubbleSeekBar
     compile 'com.xw.repo:bubbleseekbar:3.3'
 
+    //GitHub FileDownloader
+    compile 'com.liulishuo.filedownloader:library:1.4.2'
+
     testCompile 'junit:junit:4.12'
 }
