@@ -32,6 +32,17 @@ public class MyApplication extends Application {
     // 建立请求队列
     private static RequestQueue requestQueue;
 
+    //项目缓存文件夹，如以下方式书写便于检查格式
+    public static final String EXTERNAL_CACHE_DIR = Environment.getExternalStorageDirectory().toString() +
+            File.separator +
+            "Android" +
+            File.separator +
+            "data" +
+            File.separator +
+            "com.implementist.ireading" +
+            File.separator +
+            "cache";
+
     @Override
     public void onCreate() {
         super.onCreate();
@@ -64,18 +75,7 @@ public class MyApplication extends Application {
      * @param context 应用程序上下文
      */
     private static void createExternalCacheFolders(Context context) {
-        String path = Environment.getExternalStorageDirectory().toString() +
-                File.separator +
-                "Android" +
-                File.separator +
-                "data" +
-                File.separator +
-                "com.implementist.ireading" +
-                File.separator +
-                "cache";
-
-        File file = new File(path);
-
+        File file = new File(EXTERNAL_CACHE_DIR);
         if (!file.exists())
             context.getExternalCacheDir();
     }

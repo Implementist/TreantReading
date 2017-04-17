@@ -6,13 +6,15 @@ package com.implementist.ireading;
 
 public class Book {
     private int id;
-    private String title;
-    private String author;
-    private String coverUrl;
     private int totalWords;
     private int newWords;
     private int evaluationScore;
     private int pageCount;
+    private String title;
+    private String author;
+    private String coverUrl;
+    private String contentUrl;
+    private String fileName;
 
     public Book() {
     }
@@ -23,30 +25,6 @@ public class Book {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getAuthor() {
-        return author;
-    }
-
-    public void setAuthor(String author) {
-        this.author = author;
-    }
-
-    public String getCoverUrl() {
-        return coverUrl;
-    }
-
-    public void setCoverUrl(String coverUrl) {
-        this.coverUrl = coverUrl;
     }
 
     public int getTotalWords() {
@@ -79,5 +57,45 @@ public class Book {
 
     public void setPageCount(int pageCount) {
         this.pageCount = pageCount;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(String author) {
+        this.author = author;
+    }
+
+    public String getCoverUrl() {
+        return coverUrl;
+    }
+
+    public void setCoverUrl(String coverUrl) {
+        this.coverUrl = coverUrl;
+    }
+
+    public String getContentUrl() {
+        return contentUrl;
+    }
+
+    public void setContentUrl(String contentUrl) {
+        this.contentUrl = contentUrl;
+    }
+
+    public String getFileName() {
+        return fileName;
+    }
+
+    public void setFileName(String fileName) {
+        this.fileName = fileName;
     }
 }

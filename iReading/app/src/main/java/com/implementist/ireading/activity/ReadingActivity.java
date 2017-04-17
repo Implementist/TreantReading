@@ -8,7 +8,7 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.TextView;
 
-import com.implementist.ireading.FileDownloadHelper;
+import com.implementist.ireading.DownloadHelper;
 import com.implementist.ireading.R;
 import com.joanzapata.pdfview.PDFView;
 import com.joanzapata.pdfview.listener.OnPageChangeListener;
@@ -102,7 +102,7 @@ public class ReadingActivity extends BaseActivity implements OnPageChangeListene
         if (jumpToFirstPage)
             currentPageNumber = 1;
 
-        String filePath = FileDownloadHelper.getStoragePath(fileName);
+        String filePath = DownloadHelper.getStoragePath(fileName);
 
         File file = new File(filePath);
 

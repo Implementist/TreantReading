@@ -1,7 +1,6 @@
 package com.implementist.ireading;
 
 import android.content.Context;
-import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.util.Log;
@@ -12,20 +11,16 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.andview.refreshview.recyclerview.BaseRecyclerAdapter;
-import com.implementist.ireading.activity.MainActivity;
-import com.implementist.ireading.activity.ReadingActivity;
 import com.liulishuo.filedownloader.BaseDownloadTask;
 
 import java.util.List;
 
 public class SimpleAdapter extends BaseRecyclerAdapter<SimpleAdapter.SimpleAdapterViewHolder> {
 
-    private Context context;
     private List<Book> books;
     private int largeCardHeight, smallCardHeight;
 
     public SimpleAdapter(List<Book> books, Context context) {
-        this.context = context;
         this.books = books;
         largeCardHeight = Utils.dip2px(context, 150);
         smallCardHeight = Utils.dip2px(context, 100);
@@ -67,17 +62,15 @@ public class SimpleAdapter extends BaseRecyclerAdapter<SimpleAdapter.SimpleAdapt
             @Override
             public void onClick(View view) {
                 //TODO:以下这部分还需要改，第二个属性应该改为book.contentURL
-                String url = "http://ireading.imwork.net/Files/1.pdf";
-
                 //如果目标文件不存在
-                if (!FileDownloadHelper.isFileExists(url)) {
-                    BaseDownloadTask downloadTask = FileDownloadHelper.createDownloadTask(
-                            url, holder.rootView.getContext(), book);
+                if (!DownloadHelper.isFileExists(book.getFileName())) {
+                    BaseDownloadTask task = DownloadHelper.createTask(
+                            view.getContext(), book);
 
-                    int taskID = FileDownloadHelper.initDownloadTask(downloadTask);
+                    //启动下载任务并获取任务ID
+                    int taskID = DownloadHelper.initTask(task);
                 } else {
-                    FileDownloadHelper.jumpToReadingActivity(holder.rootView.getContext(),
-                            book, FileDownloadHelper.getFileName(url));
+                    DownloadHelper.jumpToReadingActivity(view.getContext(), book);
                 }
 
                 Log.i("Current Position", String.valueOf(position));
@@ -109,8 +102,7 @@ public class SimpleAdapter extends BaseRecyclerAdapter<SimpleAdapter.SimpleAdapt
     public SimpleAdapterViewHolder onCreateViewHolder(ViewGroup parent, int viewType, boolean isItem) {
         View v = LayoutInflater.from(parent.getContext()).inflate(
                 R.layout.item_book_profile, parent, false);
-        SimpleAdapterViewHolder vh = new SimpleAdapterViewHolder(v, true);
-        return vh;
+        return new SimpleAdapterViewHolder(v, true);
     }
 
     public void insert(Book book, int position) {

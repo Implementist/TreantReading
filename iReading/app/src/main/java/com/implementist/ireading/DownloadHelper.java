@@ -2,7 +2,6 @@ package com.implementist.ireading;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.os.Environment;
 import android.util.Log;
 
 import com.implementist.ireading.activity.MainActivity;
@@ -17,25 +16,21 @@ import java.io.File;
  * Copyright © 2017 Implementist. All rights reserved.
  */
 
-public class FileDownloadHelper {
+public class DownloadHelper {
 
     /**
      * 创建文件下载任务
      *
-     * @param url     文件URL
      * @param context 程序上下文
      * @param book    绘本信息
      * @return 文件下载任务
      */
-    public static BaseDownloadTask createDownloadTask(String url, final Context context, final Book book) {
-
-        final String fileName = getFileName(url);
-
+    static BaseDownloadTask createTask(final Context context, final Book book) {
         //获取完整文件存储绝对路径
-        final String path = getStoragePath(fileName);
+        final String path = getStoragePath(book.getFileName());
 
         //创建并返回文件下载器对象
-        return FileDownloader.getImpl().create(url)
+        return FileDownloader.getImpl().create(book.getContentUrl())
                 .setPath(path, false)
                 .setCallbackProgressTimes(300)
                 .setMinIntervalUpdateSpeed(400)
@@ -68,7 +63,7 @@ public class FileDownloadHelper {
 
                     @Override
                     protected void completed(BaseDownloadTask task) {
-                        jumpToReadingActivity(context, book, fileName);
+                        jumpToReadingActivity(context, book);
                     }
 
                     @Override
@@ -84,7 +79,7 @@ public class FileDownloadHelper {
      * @param task 文件下载任务
      * @return 任务ID
      */
-    public static int initDownloadTask(BaseDownloadTask task) {
+    static int initTask(BaseDownloadTask task) {
         return task.start();
     }
 
@@ -93,7 +88,7 @@ public class FileDownloadHelper {
      *
      * @param taskID 任务ID
      */
-    public static void pauseDownloadTask(int taskID) {
+    public static void pauseTask(int taskID) {
         FileDownloader.getImpl().pause(taskID);
     }
 
@@ -104,47 +99,22 @@ public class FileDownloadHelper {
      */
     public static String getStoragePath(String fileName) {
 
-        return Environment.getExternalStorageDirectory().toString() +
-                File.separator +
-                "Android" +
-                File.separator +
-                "data" +
-                File.separator +
-                "com.implementist.ireading" +
-                File.separator +
-                "cache" +
+        return MyApplication.EXTERNAL_CACHE_DIR +
                 File.separator +
                 fileName;
     }
 
     /**
-     * 从URL中截取文件名（带后缀）
-     *
-     * @param url URL
-     * @return 文件名
-     */
-    public static String getFileName(String url) {
-        try {
-            String[] segment = url.split("/");
-            return segment[segment.length - 1];
-        } catch (Exception e) {
-            Log.i("getFileNameException", e.getMessage());
-            return "ErrorFileName";
-        }
-    }
-
-    /**
      * 跳转到ReadingActivity
      *
-     * @param context  程序上下文
-     * @param book     绘本信息
-     * @param fileName 文件名
+     * @param context 程序上下文
+     * @param book    绘本信息
      */
-    public static void jumpToReadingActivity(Context context, Book book, String fileName) {
+    static void jumpToReadingActivity(Context context, Book book) {
 
         Bundle bundle = new Bundle();
         bundle.putString("Title", book.getTitle());
-        bundle.putString("FileName", fileName);
+        bundle.putString("FileName", book.getFileName());
         bundle.putString("Author", book.getAuthor());
         bundle.putInt("PageCount", book.getPageCount());
         ((MainActivity) context).startActivity(ReadingActivity.class, bundle);
@@ -153,25 +123,13 @@ public class FileDownloadHelper {
     /**
      * 检查文件是否存在
      *
-     * @param url URL
+     * @param fileName 文件名(带后缀)
      */
-    public static Boolean isFileExists(String url) {
-        String fileName = getFileName(url);
-
-        String path = Environment.getExternalStorageDirectory().toString() +
-                File.separator +
-                "Android" +
-                File.separator +
-                "data" +
-                File.separator +
-                "com.implementist.ireading" +
-                File.separator +
-                "cache" +
+    static Boolean isFileExists(String fileName) {
+        String path = MyApplication.EXTERNAL_CACHE_DIR +
                 File.separator +
                 fileName;
 
-        File file = new File(path);
-
-        return file.exists();
+        return new File(path).exists();
     }
 }
