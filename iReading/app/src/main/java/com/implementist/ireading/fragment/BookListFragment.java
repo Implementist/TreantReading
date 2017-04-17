@@ -91,10 +91,13 @@ public class BookListFragment extends BaseFragment implements XRefreshView.XRefr
      * 初始化绘本数据
      */
     private void initData() {
+        //TODO: Let program get books' data automatically rather than by writing it here.
         for (int i = 1; i < 6; i++) {
             Book book = new Book();
             book.setId(i);
             book.setCoverUrl("");
+            book.setContentUrl("http://ireading.imwork.net/Files/1.pdf");
+            book.setFileName("1.pdf");
             book.setTitle("The Ugly Duck");
             book.setTotalWords(98 * i);
             book.setNewWords(5 * i);
