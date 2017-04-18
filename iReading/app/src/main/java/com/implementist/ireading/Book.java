@@ -1,7 +1,7 @@
 package com.implementist.ireading;
 
 /**
- * Copyright © 2017. Fishbone Inc. All rights reserved.
+ * Copyright © 2017 Implementist. All rights reserved.
  */
 
 public class Book {

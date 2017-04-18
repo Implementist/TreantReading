@@ -12,6 +12,10 @@ import com.implementist.ireading.R;
 import com.implementist.ireading.fragment.LoginByPasswordFragment;
 import com.implementist.ireading.fragment.LoginByPhoneFragment;
 
+/**
+ * Copyright © 2017 Implementist. All rights reserved.
+ */
+
 public class LoginActivity extends BaseActivity implements RadioGroup.OnCheckedChangeListener {
 
     private LinearLayout lytBackFromLogin;

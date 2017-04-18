@@ -59,4 +59,7 @@
     <string name="rate_this_book">评价这本书</string>
     <string name="current_page">页码：</string>
     <string name="page_count">总页数：</string>
+    <string name="download_tip">下载提示</string>
+    <string name="click_start_to_download">即将下载绘本资源，请点击Start按钮开始下载</string>
+    <string name="start_to_download">Start</string>
 </resources>

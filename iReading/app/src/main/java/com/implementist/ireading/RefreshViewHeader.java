@@ -18,6 +18,10 @@ import com.andview.refreshview.utils.Utils;
 
 import java.util.Calendar;
 
+/**
+ * Copyright © 2017 Implementist. All rights reserved.
+ */
+
 public class RefreshViewHeader extends LinearLayout implements IHeaderCallBack {
     private ViewGroup mContent;
     private ImageView imgDirectionArrow;

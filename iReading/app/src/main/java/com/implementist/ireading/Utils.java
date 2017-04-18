@@ -12,6 +12,10 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.regex.PatternSyntaxException;
 
+/**
+ * Copyright © 2017 Implementist. All rights reserved.
+ */
+
 public class Utils {
 
     /**

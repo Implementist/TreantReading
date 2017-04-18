@@ -50,5 +50,11 @@ dependencies {
     //GitHub FileDownloader
     compile 'com.liulishuo.filedownloader:library:1.4.2'
 
+    //GitHub DialogPlus
+    compile 'com.orhanobut:dialogplus:1.11@aar'
+
+    //GitHub circular-progress-button
+    compile 'com.github.dmytrodanylyk:android-morphing-button:98a4986e56'
+
     testCompile 'junit:junit:4.12'
 }

@@ -59,4 +59,8 @@
     <string name="rate_this_book">rate this book</string>
     <string name="current_page">Current Page:</string>
     <string name="page_count">Page Count:</string>
+    <string name="download_tip">Download Tip</string>
+    <string name="click_start_to_download">Ready to Download Book Resource.
+        Please Click The Following Button to Start</string>
+    <string name="start_to_download">Start</string>
 </resources>

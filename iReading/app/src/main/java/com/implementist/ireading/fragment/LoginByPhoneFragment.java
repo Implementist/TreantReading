@@ -17,8 +17,9 @@ import com.implementist.ireading.Utils;
 import com.implementist.ireading.activity.LoginActivity;
 
 /**
- * A simple {@link Fragment} subclass.
+ * Copyright © 2017 Implementist. All rights reserved.
  */
+
 public class LoginByPhoneFragment extends BaseFragment implements TextWatcher {
 
     private AutoCompleteTextView atxtPhoneNumber;

@@ -16,6 +16,10 @@ import com.xw.repo.BubbleSeekBar;
 
 import java.io.File;
 
+/**
+ * Copyright © 2017 Implementist. All rights reserved.
+ */
+
 public class ReadingActivity extends BaseActivity implements OnPageChangeListener,
         CompoundButton.OnCheckedChangeListener, BubbleSeekBar.OnProgressChangedListener {
 
