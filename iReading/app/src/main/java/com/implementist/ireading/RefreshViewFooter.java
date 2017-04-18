@@ -11,6 +11,10 @@ import android.widget.TextView;
 import com.andview.refreshview.XRefreshView;
 import com.andview.refreshview.callback.IFooterCallBack;
 
+/**
+ * Copyright © 2017 Implementist. All rights reserved.
+ */
+
 public class RefreshViewFooter extends LinearLayout implements IFooterCallBack {
     private Context mContext;
 

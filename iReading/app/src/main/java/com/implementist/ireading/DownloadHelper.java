@@ -1,14 +1,17 @@
 package com.implementist.ireading;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
 
+import com.dd.morphingbutton.impl.LinearProgressButton;
 import com.implementist.ireading.activity.MainActivity;
 import com.implementist.ireading.activity.ReadingActivity;
 import com.liulishuo.filedownloader.BaseDownloadTask;
 import com.liulishuo.filedownloader.FileDownloadSampleListener;
 import com.liulishuo.filedownloader.FileDownloader;
+import com.orhanobut.dialogplus.DialogPlus;
 
 import java.io.File;
 
@@ -17,18 +20,20 @@ import java.io.File;
  */
 
 public class DownloadHelper {
+    @SuppressLint("StaticFieldLeak")
+    private static DialogPlus dialog;
 
     /**
      * 创建文件下载任务
      *
-     * @param context 程序上下文
+     * @param context 当前上下文
      * @param book    绘本信息
+     * @param button  文件下载按钮
      * @return 文件下载任务
      */
-    static BaseDownloadTask createTask(final Context context, final Book book) {
+    static BaseDownloadTask createTask(final Context context, final Book book, final LinearProgressButton button) {
         //获取完整文件存储绝对路径
         final String path = getStoragePath(book.getFileName());
-
         //创建并返回文件下载器对象
         return FileDownloader.getImpl().create(book.getContentUrl())
                 .setPath(path, false)
@@ -38,16 +43,21 @@ public class DownloadHelper {
 
                     @Override
                     protected void pending(BaseDownloadTask task, int soFarBytes, int totalBytes) {
-                        super.pending(task, soFarBytes, totalBytes);
+                        //进度条清零
+                        button.setProgress(0);
                     }
 
                     @Override
                     protected void progress(BaseDownloadTask task, int soFarBytes, int totalBytes) {
-                        super.progress(task, soFarBytes, totalBytes);
+                        //为进度条更新进度
+                        button.setProgress((int) (soFarBytes / (totalBytes + 0.0) * 100));
                     }
 
                     @Override
                     protected void error(BaseDownloadTask task, Throwable e) {
+                        //设置下载按钮失败动画
+                        SimpleAdapter.morphToFailure(context, button, 2000);
+                        dialog.dismiss();
                         Log.i("Error", e.getMessage());
                     }
 
@@ -63,7 +73,13 @@ public class DownloadHelper {
 
                     @Override
                     protected void completed(BaseDownloadTask task) {
+                        //设置进度条满进度
+                        button.setProgress(100);
+
+                        //设置下载按钮成功动画
+                        SimpleAdapter.morphToSuccess(context, button, 2000);
                         jumpToReadingActivity(context, book);
+                        dialog.dismiss();
                     }
 
                     @Override
@@ -131,5 +147,14 @@ public class DownloadHelper {
                 fileName;
 
         return new File(path).exists();
+    }
+
+    /**
+     * 设置对话框
+     *
+     * @param dialog 对话框
+     */
+    static void setDialog(DialogPlus dialog) {
+        DownloadHelper.dialog = dialog;
     }
 }

@@ -8,7 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 /**
- * Copyright © 2017. Fishbone Inc. All rights reserved.
+ * Copyright © 2017 Implementist. All rights reserved.
  */
 
 public abstract class BaseFragment extends Fragment implements View.OnClickListener {
