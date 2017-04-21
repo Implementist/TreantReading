@@ -47,7 +47,7 @@
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
         android:layout_marginTop="12dp"
-        android:background="@drawable/btn_color_selector"
+        android:background="@drawable/btn_back_selector_blue"
         android:enabled="false"
         android:text="@string/submit_security_code"
         android:textColor="@color/standardWhite"

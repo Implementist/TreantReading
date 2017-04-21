@@ -9,8 +9,11 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.andview.refreshview.recyclerview.BaseRecyclerAdapter;
 import com.dd.morphingbutton.MorphingButton;
@@ -18,6 +21,7 @@ import com.dd.morphingbutton.impl.LinearProgressButton;
 import com.liulishuo.filedownloader.BaseDownloadTask;
 import com.orhanobut.dialogplus.DialogPlus;
 import com.orhanobut.dialogplus.Holder;
+import com.orhanobut.dialogplus.OnCancelListener;
 import com.orhanobut.dialogplus.ViewHolder;
 
 import java.util.List;
@@ -79,7 +83,7 @@ public class SimpleAdapter extends BaseRecyclerAdapter<SimpleAdapter.SimpleAdapt
                     final DialogPlus dialog;
 
                     //实例化下载对话框
-                    Holder holder = new ViewHolder(R.layout.download_dialog_content);
+                    final Holder holder = new ViewHolder(R.layout.download_dialog_content);
                     dialog = createDialog(holder, Gravity.CENTER, view.getContext());
                     dialog.show();
 
@@ -87,6 +91,11 @@ public class SimpleAdapter extends BaseRecyclerAdapter<SimpleAdapter.SimpleAdapt
                     final LinearProgressButton btnStartToDownload;
                     btnStartToDownload = (LinearProgressButton) holder.getInflatedView()
                             .findViewById(R.id.btnStartToDownload);
+
+                    //定义并实例化Cancel Button
+                    final Button btnCancelDownload;
+                    btnCancelDownload = (Button) holder.getInflatedView()
+                            .findViewById(R.id.btnCancelDownload);
 
                     //初始化Download Button形状
                     morphToSquare(view.getContext(), btnStartToDownload, 0);
@@ -111,6 +120,36 @@ public class SimpleAdapter extends BaseRecyclerAdapter<SimpleAdapter.SimpleAdapt
 
                             //启动下载任务并获取任务ID
                             downloadTaskID[0] = DownloadHelper.initTask(task);
+
+                            //显示Cancel Button
+                            //取控件btnCancelDownload当前的布局参数
+                            LinearLayout.LayoutParams linearParams = (LinearLayout.LayoutParams)
+                                    btnCancelDownload.getLayoutParams();
+
+                            //设置高度为40dp
+                            linearParams.height = Utils.dip2px(
+                                    holder.getInflatedView().getContext(), 40);
+
+                            //传入布局参数
+                            btnCancelDownload.setLayoutParams(linearParams);
+                        }
+                    });
+
+                    //Cancel Button的点击事件，暂时必须写在这里
+                    btnCancelDownload.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            //暂停当前下载任务
+                            DownloadHelper.pauseTask(downloadTaskID[0]);
+
+                            //Toast
+                            Toast.makeText(holder.getInflatedView().getContext(),
+                                    "已取消下载当前绘本",
+                                    Toast.LENGTH_SHORT)
+                                    .show();
+
+                            //关闭对话框
+                            dialog.dismiss();
                         }
                     });
 
@@ -228,12 +267,19 @@ public class SimpleAdapter extends BaseRecyclerAdapter<SimpleAdapter.SimpleAdapt
      * @param context 当前上下文
      * @return 新的下载对话框
      */
-    private static DialogPlus createDialog(Holder holder, int gravity, Context context) {
+    private static DialogPlus createDialog(Holder holder, int gravity, final Context context) {
         return DialogPlus.newDialog(context)
                 .setContentHolder(holder)
                 .setGravity(gravity)
                 .setExpanded(false)
                 .setCancelable(true)
+                .setOnCancelListener(new OnCancelListener() {
+                    @Override
+                    public void onCancel(DialogPlus dialog) {
+                        Toast.makeText(context, "后台继续为您下载，下载完成后将跳转至阅读页面",
+                                Toast.LENGTH_LONG).show();
+                    }
+                })
                 .create();
     }
 
@@ -251,37 +297,6 @@ public class SimpleAdapter extends BaseRecyclerAdapter<SimpleAdapter.SimpleAdapt
                 .colorPressed(ContextCompat.getColor(context, R.color.standardDarkBlue))
                 .text(context.getResources().getString(R.string.start_to_download));
         btnMorph.morph(square);
-    }
-
-    /**
-     * 进度条变为成功时的圆形按钮
-     *
-     * @param context  当前上下文
-     * @param btnMorph 要改变的Button
-     */
-    static void morphToSuccess(Context context, final MorphingButton btnMorph, int duration) {
-        MorphingButton.Params circle = MorphingButton.Params.create()
-                .duration(duration)
-                .color(ContextCompat.getColor(context, R.color.standardBlue))
-                .colorPressed(ContextCompat.getColor(context, R.color.standardDarkBlue))
-                .icon(R.drawable.ic_done);
-        btnMorph.morph(circle);
-    }
-
-    /**
-     * 进度条变为失败时的圆形按钮
-     *
-     * @param context  当前上下文
-     * @param btnMorph 要改变的Button
-     * @param duration 动画间隔
-     */
-    static void morphToFailure(Context context, final MorphingButton btnMorph, int duration) {
-        MorphingButton.Params circle = MorphingButton.Params.create()
-                .duration(duration)
-                .color(ContextCompat.getColor(context, R.color.standardBlue))
-                .colorPressed(ContextCompat.getColor(context, R.color.standardDarkBlue))
-                .icon(R.drawable.ic_lock);
-        btnMorph.morph(circle);
     }
 
     /**

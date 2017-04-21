@@ -63,4 +63,5 @@
     <string name="click_start_to_download">Ready to Download Book Resource.
         Please Click The Following Button to Start</string>
     <string name="start_to_download">Start</string>
+    <string name="cancel_download">Cancel</string>
 </resources>

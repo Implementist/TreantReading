@@ -22,7 +22,7 @@
         android:layout_width="135dp"
         android:layout_height="@dimen/button_and_edit"
         android:layout_marginTop="12dp"
-        android:background="@drawable/btn_color_selector"
+        android:background="@drawable/btn_back_selector_blue"
         android:text="@string/log_in_now"
         android:textColor="@color/standardWhite"
         android:textSize="18sp" />

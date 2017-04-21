@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.dd.morphingbutton.impl.LinearProgressButton;
 import com.implementist.ireading.activity.MainActivity;
@@ -55,8 +56,7 @@ public class DownloadHelper {
 
                     @Override
                     protected void error(BaseDownloadTask task, Throwable e) {
-                        //设置下载按钮失败动画
-                        SimpleAdapter.morphToFailure(context, button, 2000);
+                        Toast.makeText(context, "下载进程发生异常，请稍后重试", Toast.LENGTH_SHORT).show();
                         dialog.dismiss();
                         Log.i("Error", e.getMessage());
                     }
@@ -76,8 +76,7 @@ public class DownloadHelper {
                         //设置进度条满进度
                         button.setProgress(100);
 
-                        //设置下载按钮成功动画
-                        SimpleAdapter.morphToSuccess(context, button, 2000);
+                        //跳转至阅读页面
                         jumpToReadingActivity(context, book);
                         dialog.dismiss();
                     }
