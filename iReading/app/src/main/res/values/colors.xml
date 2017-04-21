@@ -9,4 +9,6 @@
     <color name="standardLightGray">#EEEEEE</color>
     <color name="standardLightText">#7A7A7A</color>
     <color name="standardDarkText">#2A2A2A</color>
+    <color name="standardRed">#881280</color>
+    <color name="standardDarkRed">#550050</color>
 </resources>

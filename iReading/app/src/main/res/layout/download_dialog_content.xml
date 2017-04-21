@@ -34,7 +34,20 @@
         android:text="@string/start_to_download"
         android:textAllCaps="false"
         android:textColor="@color/standardWhite"
-        android:textSize="18sp" />
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/btnCancelDownload"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/btn_back_selector_red"
+        android:text="@string/cancel_download"
+        android:textAllCaps="false"
+        android:textColor="@color/standardWhite"
+        android:textSize="18sp"
+        android:textStyle="bold" />
 
 </LinearLayout>
 
