@@ -19,11 +19,11 @@
     <string name="loading_complete">Loading Complete</string>
     <string name="release_to_load_more">Release to Load More</string>
     <string name="every_item_has_been_loaded">Every Item Has Been Loaded</string>
-    <string name="total_words">Total Words</string>
-    <string name="new_words">New Words</string>
-    <string name="evaluation">Evaluation</string>
+    <string name="author">Author</string>
+    <string name="page_count">Page Count</string>
+    <string name="score">Score</string>
     <string name="image_of_book_cover">Image of Book Cover</string>
-    <string name="image_of_evaluation">Image of Evaluation</string>
+    <string name="image_of_score">Image of Score</string>
     <string name="image_of_pull_arrow">Image of Pull Arrow</string>
     <string name="image_of_clear_text">Image of Clear Text</string>
     <string name="image_of_user">Image of User</string>
@@ -58,7 +58,7 @@
     <string name="add_to_favorite">add to favorite</string>
     <string name="rate_this_book">rate this book</string>
     <string name="current_page">Current Page:</string>
-    <string name="page_count">Page Count:</string>
+    <string name="page_count_with_colon">Page Count:</string>
     <string name="download_tip">Download Tip</string>
     <string name="click_start_to_download">Ready to Download Book Resource.
         Please Click The Following Button to Start</string>

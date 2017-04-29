@@ -11,6 +11,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.dx.dxloadingbutton.lib.LoadingButton;
 import com.implementist.ireading.activity.LoginActivity;
 import com.implementist.ireading.activity.RegisterActivity;
+import com.implementist.ireading.fragment.BookListFragment;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -26,7 +27,7 @@ public class HttpRequestUtils {
     private static final String[] LOGIN_TYPE = {
             "LoginByPhoneNumber", "LoginByEmailAddress", "LoginByUserName"};
 
-    private static final String SERVER_ROOT = "http://ireading.imwork.net/";
+    public static final String SERVER_ROOT = "http://ireading.imwork.net/";
 
     /**
      * 注册第一步——检查手机号是否已注册
@@ -217,6 +218,54 @@ public class HttpRequestUtils {
                 params.put("LoginType", LOGIN_TYPE[typeID]);
                 params.put("AccountNumber", accountNumber);
                 params.put("Password", password);
+                return params;
+            }
+        };
+
+        //设置Tag标签
+        request.setTag(tag);
+
+        //将请求添加到队列中
+        requestQueue.add(request);
+    }
+
+    /**
+     * 查询所有书籍
+     */
+    public static void SearchAllBooksRequest() {
+        //请求地址
+        String url = HttpRequestUtils.SERVER_ROOT + "iReading/*";
+        String tag = "SearchAllBooks";
+
+        //取得请求队列
+        RequestQueue requestQueue = MyApplication.getRequestQueue();
+
+        //防止重复请求，所以先取消tag标识的请求队列
+        requestQueue.cancelAll(tag);
+
+        //创建StringRequest，定义字符串请求的请求方式为POST(省略第一个参数会默认为GET方式)
+        final StringRequest request = new StringRequest(Request.Method.POST, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try {
+                            JSONObject jsonObject = (JSONObject) new JSONObject(response).get("params");
+                            MyApplication.books = jsonObject.getJSONArray("Books");
+                            BookListFragment.initView();
+                        } catch (JSONException e) {
+                            Log.e("TAG", e.getMessage(), e);
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.e("TAG", error.getMessage(), error);
+            }
+        }) {
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<>();
+                params.put("RequestType", "SearchAllBooks");
                 return params;
             }
         };

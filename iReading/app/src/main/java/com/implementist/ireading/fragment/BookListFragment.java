@@ -1,6 +1,6 @@
 package com.implementist.ireading.fragment;
 
-
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Handler;
 import android.support.v7.widget.LinearLayoutManager;
@@ -9,10 +9,14 @@ import android.view.View;
 
 import com.andview.refreshview.XRefreshView;
 import com.implementist.ireading.Book;
+import com.implementist.ireading.MyApplication;
 import com.implementist.ireading.R;
 import com.implementist.ireading.RefreshViewFooter;
 import com.implementist.ireading.RefreshViewHeader;
 import com.implementist.ireading.SimpleAdapter;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,8 +28,9 @@ import java.util.List;
 public class BookListFragment extends BaseFragment implements XRefreshView.XRefreshViewListener {
 
     RecyclerView recyclerView;
-    SimpleAdapter adapter;
-    List<Book> books = new ArrayList<>();
+    @SuppressLint("StaticFieldLeak")
+    private static SimpleAdapter adapter;
+    static List<Book> books = new ArrayList<>();
     XRefreshView xRefreshView;
 
     LinearLayoutManager layoutManager;
@@ -42,7 +47,6 @@ public class BookListFragment extends BaseFragment implements XRefreshView.XRefr
         recyclerView = $(R.id.recvBookList);
         recyclerView.setHasFixedSize(true);
 
-        initData();
         adapter = new SimpleAdapter(books, view.getContext());
         // 设置静默加载模式
         //xRefreshView1.setSilenceLoadMore();
@@ -88,23 +92,28 @@ public class BookListFragment extends BaseFragment implements XRefreshView.XRefr
     }
 
     /**
-     * 初始化绘本数据
+     * 初始化View
      */
-    private void initData() {
-        //TODO: Let program get books' data automatically rather than by writing it here.
-        for (int i = 1; i < 6; i++) {
-            Book book = new Book();
-            book.setId(i);
-            book.setCoverUrl("");
-            book.setContentUrl("http://ireading.imwork.net/Files/1.pdf");
-            book.setFileName("1.pdf");
-            book.setTitle("The Ugly Duck");
-            book.setTotalWords(98 * i);
-            book.setNewWords(5 * i);
-            book.setEvaluationScore(i - 1);
-            book.setAuthor("爱迪生");
-            book.setPageCount(41);
-            books.add(book);
+    public static void initView() {
+        //TODO: Change the following raw to for(int i = 0; i < min(10, length), i++)
+        for (int i = 0; i < MyApplication.books.length(); i++) {
+            try {
+                JSONObject jsonObject = MyApplication.books.getJSONObject(i);
+                Book book = new Book();
+                book.setBookID(jsonObject.getInt("BookID"));
+                book.setPageCount(jsonObject.getInt("PageCount"));
+                book.setScore((float) jsonObject.getDouble("Score"));
+                book.setTitle(jsonObject.getString("Title"));
+                book.setAuthor(jsonObject.getString("Author"));
+                book.setCoverUrl(jsonObject.getString("CoverURL"));
+                book.setContentUrl(jsonObject.getString("ContentURL"));
+                book.setFileName(jsonObject.getString("FileName"));
+
+                //将书本信息插入Adapter
+                adapter.insert(book, i);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
         }
     }
 
@@ -125,6 +134,7 @@ public class BookListFragment extends BaseFragment implements XRefreshView.XRefr
 
     @Override
     public void onLoadMore(boolean isSilence) {
+        //TODO: insert 10 data each time
         new Handler().postDelayed(new Runnable() {
             public void run() {
                 mLoadCount++;
