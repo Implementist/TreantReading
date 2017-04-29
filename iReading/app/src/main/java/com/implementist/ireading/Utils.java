@@ -92,7 +92,7 @@ public class Utils {
     }
 
     public static boolean isPhoneNumber(String str) throws PatternSyntaxException {
-        String regExp = "^((13[0-9])|(15[^4])|(18[0,2,3,5-9])|(17[0-8])|(147))\\d{8}$";
+        String regExp = "^((13[0-9])|(15[^4])|(18[0235-9])|(17[0-8])|(147))\\d{8}$";
         Pattern pattern = Pattern.compile(regExp);
         Matcher matcher = pattern.matcher(str);
         return matcher.matches();
