@@ -5,11 +5,9 @@ package com.implementist.ireading;
  */
 
 public class Book {
-    private int id;
-    private int totalWords;
-    private int newWords;
-    private int evaluationScore;
+    private int bookID;
     private int pageCount;
+    private float score;
     private String title;
     private String author;
     private String coverUrl;
@@ -19,36 +17,12 @@ public class Book {
     public Book() {
     }
 
-    public int getId() {
-        return id;
+    public int getBookID() {
+        return bookID;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public int getTotalWords() {
-        return totalWords;
-    }
-
-    public void setTotalWords(int totalWords) {
-        this.totalWords = totalWords;
-    }
-
-    public int getNewWords() {
-        return newWords;
-    }
-
-    public void setNewWords(int newWords) {
-        this.newWords = newWords;
-    }
-
-    public int getEvaluationScore() {
-        return evaluationScore;
-    }
-
-    public void setEvaluationScore(int evaluationScore) {
-        this.evaluationScore = evaluationScore;
+    public void setBookID(int bookID) {
+        this.bookID = bookID;
     }
 
     public int getPageCount() {
@@ -57,6 +31,14 @@ public class Book {
 
     public void setPageCount(int pageCount) {
         this.pageCount = pageCount;
+    }
+
+    public float getScore() {
+        return score;
+    }
+
+    public void setScore(float score) {
+        this.score = score;
     }
 
     public String getTitle() {

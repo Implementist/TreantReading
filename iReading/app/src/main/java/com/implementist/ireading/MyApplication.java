@@ -8,6 +8,8 @@ import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
 import com.liulishuo.filedownloader.FileDownloader;
 
+import org.json.JSONArray;
+
 import java.io.File;
 import java.util.HashMap;
 
@@ -43,6 +45,8 @@ public class MyApplication extends Application {
             File.separator +
             "cache";
 
+    public static JSONArray books = new JSONArray();
+
     @Override
     public void onCreate() {
         super.onCreate();
@@ -57,7 +61,8 @@ public class MyApplication extends Application {
         //创建外部存储器目标路径
         createExternalCacheFolders(getApplicationContext());
 
-        //TODO: 初始的时候加载10条数据到BookList中去
+        //在程序启动时预读取绘本数据
+        HttpRequestUtils.SearchAllBooksRequest();
     }
 
     /**

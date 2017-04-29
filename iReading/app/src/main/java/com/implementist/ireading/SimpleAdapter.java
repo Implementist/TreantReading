@@ -48,24 +48,10 @@ public class SimpleAdapter extends BaseRecyclerAdapter<SimpleAdapter.SimpleAdapt
         //holder.imgCover.setImageResource();
 
         holder.tvTitle.setText(book.getTitle());
-        holder.tvTotalWords.setText(String.valueOf(book.getTotalWords()));
-        holder.tvNewWords.setText(String.valueOf(book.getNewWords()));
+        holder.tvAuthor.setText(String.valueOf(book.getAuthor()));
+        holder.tvPageCount.setText(String.valueOf(book.getPageCount()));
 
         //TODO:set corresponding image by score
-        switch (book.getEvaluationScore() * 10 / 10) {
-            case 0:
-                break;
-            case 1:
-                break;
-            case 2:
-                break;
-            case 3:
-                break;
-            case 4:
-                break;
-            case 5:
-                break;
-        }
 
         ViewGroup.LayoutParams layoutParams = holder.itemView.getLayoutParams();
         if (layoutParams instanceof StaggeredGridLayoutManager.LayoutParams) {
@@ -222,9 +208,9 @@ public class SimpleAdapter extends BaseRecyclerAdapter<SimpleAdapter.SimpleAdapt
 
         ImageView imgCover;
         TextView tvTitle;
-        TextView tvTotalWords;
-        TextView tvNewWords;
-        ImageView imgEvaluation;
+        TextView tvAuthor;
+        TextView tvPageCount;
+        ImageView imgScore;
         View rootView;
 
         /**
@@ -238,9 +224,9 @@ public class SimpleAdapter extends BaseRecyclerAdapter<SimpleAdapter.SimpleAdapt
             if (isItem) {
                 imgCover = (ImageView) itemView.findViewById(R.id.imgCover);
                 tvTitle = (TextView) itemView.findViewById(R.id.tvTitle);
-                tvTotalWords = (TextView) itemView.findViewById(R.id.tvTotalWords);
-                tvNewWords = (TextView) itemView.findViewById(R.id.tvNewWords);
-                imgEvaluation = (ImageView) itemView.findViewById(R.id.imgEvaluation);
+                tvAuthor = (TextView) itemView.findViewById(R.id.tvAuthor);
+                tvPageCount = (TextView) itemView.findViewById(R.id.tvPageCount);
+                imgScore = (ImageView) itemView.findViewById(R.id.imgScore);
                 rootView = itemView.findViewById(R.id.lytBookUnit);
             }
         }

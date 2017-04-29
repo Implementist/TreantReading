@@ -36,7 +36,7 @@ public class DownloadHelper {
         //获取完整文件存储绝对路径
         final String path = getStoragePath(book.getFileName());
         //创建并返回文件下载器对象
-        return FileDownloader.getImpl().create(book.getContentUrl())
+        return FileDownloader.getImpl().create(HttpRequestUtils.SERVER_ROOT + book.getContentUrl())
                 .setPath(path, false)
                 .setCallbackProgressTimes(300)
                 .setMinIntervalUpdateSpeed(400)
