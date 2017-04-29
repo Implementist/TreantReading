@@ -5,7 +5,6 @@ import android.content.Context;
 import android.text.Editable;
 import android.text.InputType;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.View;
 import android.widget.AutoCompleteTextView;
 import android.widget.CheckBox;
@@ -14,32 +13,17 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.android.volley.AuthFailureError;
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
 import com.dx.dxloadingbutton.lib.LoadingButton;
-import com.implementist.ireading.MyApplication;
+import com.implementist.ireading.HttpRequestUtils;
 import com.implementist.ireading.R;
 import com.implementist.ireading.Utils;
 import com.implementist.ireading.activity.LoginActivity;
-
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * Copyright © 2017 Implementist. All rights reserved.
  */
 public class LoginByPasswordFragment extends BaseFragment implements TextWatcher,
         LoadingButton.AnimationEndListener, CompoundButton.OnCheckedChangeListener {
-
-    private final static String[] LOGIN_TYPE = {
-            "LoginByPhoneNumber", "LoginByEmailAddress", "LoginByUserName"};
 
     private AutoCompleteTextView atxtAccountNumber;
     private EditText editPassword;
@@ -92,7 +76,9 @@ public class LoginByPasswordFragment extends BaseFragment implements TextWatcher
                 else {
                     int loginType = Utils.judgeLoginType(atxtAccountNumber.getText().toString());
                     btnLoginByPassword.startLoading();
-                    VolleyPost(loginType);
+                    HttpRequestUtils.LoginByPasswordRequest(loginType, btnLoginByPassword,
+                            (LoginActivity) getActivity(), atxtAccountNumber.getText().toString(),
+                            editPassword.getText().toString());
                 }
                 break;
 
@@ -148,63 +134,5 @@ public class LoginByPasswordFragment extends BaseFragment implements TextWatcher
             editPassword.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
             cbxPasswordVisibility.setBackgroundResource(R.drawable.ic_invisible);
         }
-    }
-
-    // 定义POST请求的方法
-    private void VolleyPost(final int typeID) {
-        //请求地址
-        String url = "http://ireading.imwork.net/iReading/*";
-        String tag = LOGIN_TYPE[typeID];
-
-        //取得请求队列
-        RequestQueue requestQueue = MyApplication.getRequestQueue();
-
-        //防止重复请求，所以先取消tag标识的请求队列
-        requestQueue.cancelAll(tag);
-
-        //创建StringRequest，定义字符串请求的请求方式为POST(省略第一个参数会默认为GET方式)
-        final StringRequest request = new StringRequest(Request.Method.POST, url,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        try {
-                            JSONObject jsonObject = (JSONObject) new JSONObject(response).get("params");
-                            String result = jsonObject.getString("Result");
-                            if (result.equals("success")) {
-                                btnLoginByPassword.loadingSuccessful();
-                            } else {
-                                ((LoginActivity) getActivity()).showToast("账号或密码错误，请重新输入");
-                                btnLoginByPassword.loadingFailed();
-                            }
-                        } catch (JSONException e) {
-                            ((LoginActivity) getActivity()).showToast("网络请求发生错误，稍后请重试");
-                            btnLoginByPassword.loadingFailed();
-                            Log.e("TAG", e.getMessage(), e);
-                        }
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                ((LoginActivity) getActivity()).showToast("网络请求发生错误，稍后请重试");
-                btnLoginByPassword.loadingFailed();
-                Log.e("TAG", error.getMessage(), error);
-            }
-        }) {
-            @Override
-            protected Map<String, String> getParams() throws AuthFailureError {
-                Map<String, String> params = new HashMap<>();
-                params.put("RequestType", "Login");
-                params.put("LoginType", LOGIN_TYPE[typeID]);
-                params.put("AccountNumber", atxtAccountNumber.getText().toString());
-                params.put("Password", editPassword.getText().toString());
-                return params;
-            }
-        };
-
-        //设置Tag标签
-        request.setTag(tag);
-
-        //将请求添加到队列中
-        requestQueue.add(request);
     }
 }
