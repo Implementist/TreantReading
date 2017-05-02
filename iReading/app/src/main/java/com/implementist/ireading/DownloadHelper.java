@@ -2,19 +2,30 @@ package com.implementist.ireading;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.dd.morphingbutton.impl.LinearProgressButton;
 import com.implementist.ireading.activity.MainActivity;
 import com.implementist.ireading.activity.ReadingActivity;
+import com.implementist.ireading.fragment.BookListFragment;
 import com.liulishuo.filedownloader.BaseDownloadTask;
+import com.liulishuo.filedownloader.FileDownloadListener;
+import com.liulishuo.filedownloader.FileDownloadQueueSet;
 import com.liulishuo.filedownloader.FileDownloadSampleListener;
 import com.liulishuo.filedownloader.FileDownloader;
 import com.orhanobut.dialogplus.DialogPlus;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Copyright © 2017 Implementist. All rights reserved.
@@ -32,11 +43,12 @@ public class DownloadHelper {
      * @param button  文件下载按钮
      * @return 文件下载任务
      */
-    static BaseDownloadTask createTask(final Context context, final Book book, final LinearProgressButton button) {
+    static BaseDownloadTask createFileTask(final Context context, final Book book, final LinearProgressButton button) {
         //获取完整文件存储绝对路径
         final String path = getStoragePath(book.getFileName());
         //创建并返回文件下载器对象
-        return FileDownloader.getImpl().create(HttpRequestUtils.SERVER_ROOT + book.getContentUrl())
+        return FileDownloader.getImpl()
+                .create(HttpRequestUtils.SERVER_ROOT + book.getContentUrl())
                 .setPath(path, false)
                 .setCallbackProgressTimes(300)
                 .setMinIntervalUpdateSpeed(400)
@@ -89,6 +101,65 @@ public class DownloadHelper {
     }
 
     /**
+     * 创建图片下载任务
+     *
+     * @param context   当前上下文
+     * @param path      图片存放路径
+     * @param url       URL
+     * @param imageView 需要添加图片资源的ImageView
+     * @return 图片下载任务
+     */
+    static BaseDownloadTask createImageTask(final Context context, final String path, String url,
+                                            final ImageView imageView) {
+        //创建并返回文件下载器对象
+        return FileDownloader.getImpl()
+                .create(url)
+                .setPath(path, false)
+                .setCallbackProgressTimes(300)
+                .setMinIntervalUpdateSpeed(400)
+                .setListener(new FileDownloadSampleListener() {
+
+                    @Override
+                    protected void pending(BaseDownloadTask task, int soFarBytes, int totalBytes) {
+
+                    }
+
+                    @Override
+                    protected void progress(BaseDownloadTask task, int soFarBytes, int totalBytes) {
+
+                    }
+
+                    @Override
+                    protected void error(BaseDownloadTask task, Throwable e) {
+                        //TODO: Delete the following raw and set a default image to the image view.
+                        Toast.makeText(context, "下载进程发生异常，请稍后重试", Toast.LENGTH_SHORT).show();
+                        Log.i("Error", e.getMessage());
+                    }
+
+                    @Override
+                    protected void connected(BaseDownloadTask task, String etag, boolean isContinue, int soFarBytes, int totalBytes) {
+                        super.connected(task, etag, isContinue, soFarBytes, totalBytes);
+                    }
+
+                    @Override
+                    protected void paused(BaseDownloadTask task, int soFarBytes, int totalBytes) {
+                        super.paused(task, soFarBytes, totalBytes);
+                    }
+
+                    @Override
+                    protected void completed(BaseDownloadTask task) {
+                        Bitmap bitmap = BitmapFactory.decodeFile(path);
+                        imageView.setImageBitmap(bitmap);
+                    }
+
+                    @Override
+                    protected void warn(BaseDownloadTask task) {
+                        super.warn(task);
+                    }
+                });
+    }
+
+    /**
      * 初始化文件下载任务
      *
      * @param task 文件下载任务
@@ -103,7 +174,7 @@ public class DownloadHelper {
      *
      * @param taskID 任务ID
      */
-    public static void pauseTask(int taskID) {
+    static void pauseTask(int taskID) {
         FileDownloader.getImpl().pause(taskID);
     }
 

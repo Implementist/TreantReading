@@ -92,10 +92,9 @@ public class BookListFragment extends BaseFragment implements XRefreshView.XRefr
     }
 
     /**
-     * 初始化View
+     * 插入条目
      */
-    public static void initView() {
-        //TODO: Change the following raw to for(int i = 0; i < min(10, length), i++)
+    public static void insertItems() {
         for (int i = 0; i < MyApplication.books.length(); i++) {
             try {
                 JSONObject jsonObject = MyApplication.books.getJSONObject(i);
