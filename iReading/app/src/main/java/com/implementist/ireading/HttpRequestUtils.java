@@ -251,7 +251,7 @@ public class HttpRequestUtils {
                         try {
                             JSONObject jsonObject = (JSONObject) new JSONObject(response).get("params");
                             MyApplication.books = jsonObject.getJSONArray("Books");
-                            BookListFragment.initView();
+                            BookListFragment.insertItems();
                         } catch (JSONException e) {
                             Log.e("TAG", e.getMessage(), e);
                         }
