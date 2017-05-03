@@ -1,5 +1,6 @@
 package com.implementist.ireading;
 
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 
 import com.android.volley.AuthFailureError;
@@ -232,7 +233,7 @@ public class HttpRequestUtils {
     /**
      * 查询所有书籍
      */
-    public static void SearchAllBooksRequest() {
+    public static void SearchAllBooksRequest(final SimpleAdapter adapter, final RecyclerView view) {
         //请求地址
         String url = HttpRequestUtils.SERVER_ROOT + "iReading/*";
         String tag = "SearchAllBooks";
@@ -251,7 +252,7 @@ public class HttpRequestUtils {
                         try {
                             JSONObject jsonObject = (JSONObject) new JSONObject(response).get("params");
                             MyApplication.books = jsonObject.getJSONArray("Books");
-                            BookListFragment.insertItems();
+                            BookListFragment.insertItems(adapter, view);
                         } catch (JSONException e) {
                             Log.e("TAG", e.getMessage(), e);
                         }

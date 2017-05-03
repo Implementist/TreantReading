@@ -33,12 +33,12 @@ dependencies {
     compile 'com.android.support:support-vector-drawable:25.3.1'
 
     //GitHub XRefreshView
-    compile 'com.huxq17.xrefreshview:xrefreshview:3.6.5'
-
-    //GitHub DxLoadingButton
-    compile 'com.mcxiaoke.volley:library:1.0.19'
+    compile 'com.huxq17.xrefreshview:xrefreshview:3.6.8'
 
     //GitHub Volley
+    compile 'com.mcxiaoke.volley:library:1.0.19'
+
+    //GitHub DxLoadingButton
     compile 'com.github.StevenDXC:DxLoadingButton:1.5'
 
     //GitHub android-pdfview

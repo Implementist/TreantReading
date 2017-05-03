@@ -47,6 +47,8 @@ public class MyApplication extends Application {
 
     public static JSONArray books = new JSONArray();
 
+    public static int currentItemIndex;
+
     @Override
     public void onCreate() {
         super.onCreate();
@@ -55,14 +57,13 @@ public class MyApplication extends Application {
 
         requestQueue = Volley.newRequestQueue(getApplicationContext());
 
+        currentItemIndex = 0;
+
         //FileDownloader 初始化
         FileDownloader.init(getApplicationContext());
 
         //创建外部存储器目标路径
         createExternalCacheFolders(getApplicationContext());
-
-        //在程序启动时预读取绘本数据
-        HttpRequestUtils.SearchAllBooksRequest();
     }
 
     /**

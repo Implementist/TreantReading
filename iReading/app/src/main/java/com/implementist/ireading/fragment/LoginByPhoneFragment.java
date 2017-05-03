@@ -1,9 +1,7 @@
 package com.implementist.ireading.fragment;
 
-
 import android.content.Context;
 import android.os.Handler;
-import android.support.v4.app.Fragment;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
