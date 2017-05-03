@@ -1,8 +1,6 @@
 package com.implementist.ireading;
 
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
@@ -48,11 +46,10 @@ public class SimpleAdapter extends BaseRecyclerAdapter<SimpleAdapter.SimpleAdapt
     public void onBindViewHolder(final SimpleAdapterViewHolder holder, int position, boolean isItem) {
         final Book book = books.get(position);
 
-        DownloadHelper.createImageTask(holder.rootView.getContext(),
-                MyApplication.EXTERNAL_CACHE_DIR + File.separator + book.getBookID() + ".jpg",
+        DownloadHelper.createImageTask(MyApplication.EXTERNAL_CACHE_DIR + File.separator + book.getBookID() + ".jpg",
                 HttpRequestUtils.SERVER_ROOT + book.getCoverUrl(),
                 holder.imgCover)
-        .start();
+                .start();
 
         holder.tvTitle.setText(book.getTitle());
         holder.tvAuthor.setText(String.valueOf(book.getAuthor()));
@@ -104,12 +101,9 @@ public class SimpleAdapter extends BaseRecyclerAdapter<SimpleAdapter.SimpleAdapt
                             //按钮变进度条
                             simulateProgress(btnStartToDownload, v.getContext(), 500);
 
-                            //传入Holder
-                            DownloadHelper.setDialog(dialog);
-
                             //创建下载任务
                             BaseDownloadTask task = DownloadHelper.createFileTask(v.getContext(),
-                                    book, btnStartToDownload);
+                                    book, btnStartToDownload, dialog);
 
                             //启动下载任务并获取任务ID
                             downloadTaskID[0] = DownloadHelper.initTask(task);

@@ -1,6 +1,5 @@
 package com.implementist.ireading;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -12,28 +11,18 @@ import android.widget.Toast;
 import com.dd.morphingbutton.impl.LinearProgressButton;
 import com.implementist.ireading.activity.MainActivity;
 import com.implementist.ireading.activity.ReadingActivity;
-import com.implementist.ireading.fragment.BookListFragment;
 import com.liulishuo.filedownloader.BaseDownloadTask;
-import com.liulishuo.filedownloader.FileDownloadListener;
-import com.liulishuo.filedownloader.FileDownloadQueueSet;
 import com.liulishuo.filedownloader.FileDownloadSampleListener;
 import com.liulishuo.filedownloader.FileDownloader;
 import com.orhanobut.dialogplus.DialogPlus;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Copyright © 2017 Implementist. All rights reserved.
  */
 
 public class DownloadHelper {
-    @SuppressLint("StaticFieldLeak")
-    private static DialogPlus dialog;
 
     /**
      * 创建文件下载任务
@@ -41,9 +30,11 @@ public class DownloadHelper {
      * @param context 当前上下文
      * @param book    绘本信息
      * @param button  文件下载按钮
+     * @param dialog  下载对话框
      * @return 文件下载任务
      */
-    static BaseDownloadTask createFileTask(final Context context, final Book book, final LinearProgressButton button) {
+    static BaseDownloadTask createFileTask(final Context context, final Book book,
+                                           final LinearProgressButton button, final DialogPlus dialog) {
         //获取完整文件存储绝对路径
         final String path = getStoragePath(book.getFileName());
         //创建并返回文件下载器对象
@@ -103,14 +94,12 @@ public class DownloadHelper {
     /**
      * 创建图片下载任务
      *
-     * @param context   当前上下文
      * @param path      图片存放路径
      * @param url       URL
      * @param imageView 需要添加图片资源的ImageView
      * @return 图片下载任务
      */
-    static BaseDownloadTask createImageTask(final Context context, final String path, String url,
-                                            final ImageView imageView) {
+    static BaseDownloadTask createImageTask(final String path, String url, final ImageView imageView) {
         //创建并返回文件下载器对象
         return FileDownloader.getImpl()
                 .create(url)
@@ -131,8 +120,7 @@ public class DownloadHelper {
 
                     @Override
                     protected void error(BaseDownloadTask task, Throwable e) {
-                        //TODO: Delete the following raw and set a default image to the image view.
-                        Toast.makeText(context, "下载进程发生异常，请稍后重试", Toast.LENGTH_SHORT).show();
+                        imageView.setImageResource(R.drawable.ic_default_image);
                         Log.i("Error", e.getMessage());
                     }
 
@@ -148,8 +136,12 @@ public class DownloadHelper {
 
                     @Override
                     protected void completed(BaseDownloadTask task) {
-                        Bitmap bitmap = BitmapFactory.decodeFile(path);
-                        imageView.setImageBitmap(bitmap);
+                        if (new File(path).exists()) {
+                            Bitmap bitmap = BitmapFactory.decodeFile(path);
+                            imageView.setImageBitmap(bitmap);
+                        } else {
+                            imageView.setImageResource(R.drawable.ic_default_image);
+                        }
                     }
 
                     @Override
@@ -217,14 +209,5 @@ public class DownloadHelper {
                 fileName;
 
         return new File(path).exists();
-    }
-
-    /**
-     * 设置对话框
-     *
-     * @param dialog 对话框
-     */
-    static void setDialog(DialogPlus dialog) {
-        DownloadHelper.dialog = dialog;
     }
 }

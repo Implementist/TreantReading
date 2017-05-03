@@ -1,6 +1,5 @@
 package com.implementist.ireading.fragment;
 
-
 import android.content.Context;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -113,9 +112,6 @@ public class RegisterStep1Fragment extends BaseFragment implements TextWatcher,
 
             //改变选中的radioButton，跳转页面
             ((RadioButton) getActivity().findViewById(R.id.rbStep2)).setChecked(true);
-        } else if (animationType == LoadingButton.AnimationType.FAILED) {
-            //TODO: It does not work. I think this is a bug waiting to be fixed.
-            ((RegisterActivity) getActivity()).showToast("该手机号已经被注册，验证手机号后可直接登录");
         }
     }
 }

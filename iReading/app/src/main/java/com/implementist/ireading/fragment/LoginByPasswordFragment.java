@@ -1,6 +1,5 @@
 package com.implementist.ireading.fragment;
 
-
 import android.content.Context;
 import android.text.Editable;
 import android.text.InputType;
