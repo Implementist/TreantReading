@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 import com.implementist.ireading.MyApplication;
 import com.implementist.ireading.R;
-import com.implementist.ireading.Utils;
+import com.implementist.ireading.utils.CommonUtils;
 import com.implementist.ireading.fragment.BookListFragment;
 import com.implementist.ireading.fragment.UnregisteredFavoritesFragment;
 
@@ -59,7 +59,7 @@ public class MainActivity extends BaseActivity implements
         tvTitle = $(R.id.tvTitle);
 
         //取消BottomNavigationView各item切换时的位移动效
-        Utils.disableShiftMode(navigation);
+        CommonUtils.disableShiftMode(navigation);
     }
 
     @Override
@@ -91,7 +91,7 @@ public class MainActivity extends BaseActivity implements
                     bookListFragment = new BookListFragment();
 
                 //通过简直映射得到动画数组
-                slideAnimation = Utils.getSlideAnimationByCalculate(
+                slideAnimation = CommonUtils.getSlideAnimationByCalculate(
                         MyApplication.FRAGMENT_MAP.get("BookList"),
                         MyApplication.FRAGMENT_MAP.get(MyApplication.lastFragment)
                 );
@@ -113,7 +113,7 @@ public class MainActivity extends BaseActivity implements
                 if (null == unregisteredFavoritesFragment)
                     unregisteredFavoritesFragment = new UnregisteredFavoritesFragment();
 
-                slideAnimation = Utils.getSlideAnimationByCalculate(
+                slideAnimation = CommonUtils.getSlideAnimationByCalculate(
                         MyApplication.FRAGMENT_MAP.get("Favorites"),
                         MyApplication.FRAGMENT_MAP.get(MyApplication.lastFragment)
                 );

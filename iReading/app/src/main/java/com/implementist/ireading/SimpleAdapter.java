@@ -1,6 +1,7 @@
 package com.implementist.ireading;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
@@ -18,6 +19,9 @@ import android.widget.Toast;
 import com.andview.refreshview.recyclerview.BaseRecyclerAdapter;
 import com.dd.morphingbutton.MorphingButton;
 import com.dd.morphingbutton.impl.LinearProgressButton;
+import com.implementist.ireading.utils.DownloadUtils;
+import com.implementist.ireading.utils.HttpRequestUtils;
+import com.implementist.ireading.utils.CommonUtils;
 import com.liulishuo.filedownloader.BaseDownloadTask;
 import com.orhanobut.dialogplus.DialogPlus;
 import com.orhanobut.dialogplus.Holder;
@@ -38,18 +42,23 @@ public class SimpleAdapter extends BaseRecyclerAdapter<SimpleAdapter.SimpleAdapt
 
     public SimpleAdapter(List<Book> books, Context context) {
         this.books = books;
-        largeCardHeight = Utils.dip2px(context, 150);
-        smallCardHeight = Utils.dip2px(context, 100);
+        largeCardHeight = CommonUtils.dip2px(context, 150);
+        smallCardHeight = CommonUtils.dip2px(context, 100);
     }
 
     @Override
     public void onBindViewHolder(final SimpleAdapterViewHolder holder, int position, boolean isItem) {
         final Book book = books.get(position);
 
-        DownloadHelper.createImageTask(MyApplication.EXTERNAL_CACHE_DIR + File.separator + book.getBookID() + ".jpg",
-                HttpRequestUtils.SERVER_ROOT + book.getCoverUrl(),
-                holder.imgCover)
-                .start();
+        //判断封面图文件是否已存在
+        Bitmap bitmap = MyApplication.bitmapCache.get(book.getBookID(), null);
+        if (bitmap != null) {
+            holder.imgCover.setImageBitmap(bitmap);
+        } else {
+            String path = MyApplication.EXTERNAL_CACHE_DIR + File.separator + book.getBookID() + ".jpg";
+            String fullURL = HttpRequestUtils.SERVER_ROOT + book.getCoverUrl();
+            DownloadUtils.createImageTask(path, fullURL, book.getBookID(), holder.imgCover).start();
+        }
 
         holder.tvTitle.setText(book.getTitle());
         holder.tvAuthor.setText(String.valueOf(book.getAuthor()));
@@ -67,7 +76,7 @@ public class SimpleAdapter extends BaseRecyclerAdapter<SimpleAdapter.SimpleAdapt
             @Override
             public void onClick(View view) {
                 //如果目标文件不存在
-                if (!DownloadHelper.isFileExists(book.getFileName())) {
+                if (!DownloadUtils.isFileExists(book.getFileName())) {
 
                     //下载对话框
                     final DialogPlus dialog;
@@ -102,11 +111,11 @@ public class SimpleAdapter extends BaseRecyclerAdapter<SimpleAdapter.SimpleAdapt
                             simulateProgress(btnStartToDownload, v.getContext(), 500);
 
                             //创建下载任务
-                            BaseDownloadTask task = DownloadHelper.createFileTask(v.getContext(),
+                            BaseDownloadTask task = DownloadUtils.createFileTask(v.getContext(),
                                     book, btnStartToDownload, dialog);
 
                             //启动下载任务并获取任务ID
-                            downloadTaskID[0] = DownloadHelper.initTask(task);
+                            downloadTaskID[0] = DownloadUtils.initTask(task);
 
                             //显示Cancel Button
                             //取控件btnCancelDownload当前的布局参数
@@ -114,7 +123,7 @@ public class SimpleAdapter extends BaseRecyclerAdapter<SimpleAdapter.SimpleAdapt
                                     btnCancelDownload.getLayoutParams();
 
                             //设置高度为40dp
-                            linearParams.height = Utils.dip2px(
+                            linearParams.height = CommonUtils.dip2px(
                                     holder.getInflatedView().getContext(), 40);
 
                             //传入布局参数
@@ -127,7 +136,7 @@ public class SimpleAdapter extends BaseRecyclerAdapter<SimpleAdapter.SimpleAdapt
                         @Override
                         public void onClick(View v) {
                             //暂停当前下载任务
-                            DownloadHelper.pauseTask(downloadTaskID[0]);
+                            DownloadUtils.pauseTask(downloadTaskID[0]);
 
                             //Toast
                             Toast.makeText(holder.getInflatedView().getContext(),
@@ -141,7 +150,7 @@ public class SimpleAdapter extends BaseRecyclerAdapter<SimpleAdapter.SimpleAdapt
                     });
 
                 } else {
-                    DownloadHelper.jumpToReadingActivity(view.getContext(), book);
+                    DownloadUtils.jumpToReadingActivity(view.getContext(), book);
                 }
 
                 Log.i("Current Position", String.valueOf(holder.getAdapterPosition()));

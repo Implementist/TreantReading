@@ -1,9 +1,11 @@
-package com.implementist.ireading;
+package com.implementist.ireading.utils;
 
 import android.content.Context;
 import android.support.design.internal.BottomNavigationItemView;
 import android.support.design.internal.BottomNavigationMenuView;
 import android.support.design.widget.BottomNavigationView;
+
+import com.implementist.ireading.R;
 
 import java.lang.reflect.Field;
 import java.util.regex.Matcher;
@@ -14,7 +16,7 @@ import java.util.regex.PatternSyntaxException;
  * Copyright © 2017 Implementist. All rights reserved.
  */
 
-public class Utils {
+public class CommonUtils {
 
     /**
      * 根据手机的分辨率从 dp 的单位 转成为 px(像素)
