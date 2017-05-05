@@ -9,7 +9,7 @@ import android.view.View;
 import com.andview.refreshview.XRefreshView;
 import com.implementist.ireading.Book;
 import com.implementist.ireading.EndlessRecyclerViewScrollListener;
-import com.implementist.ireading.HttpRequestUtils;
+import com.implementist.ireading.utils.HttpRequestUtils;
 import com.implementist.ireading.MyApplication;
 import com.implementist.ireading.R;
 import com.implementist.ireading.RefreshViewFooter;

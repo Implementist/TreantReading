@@ -11,7 +11,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 
 import com.implementist.ireading.R;
-import com.implementist.ireading.Utils;
+import com.implementist.ireading.utils.CommonUtils;
 import com.implementist.ireading.activity.LoginActivity;
 
 /**
@@ -81,7 +81,7 @@ public class LoginByPhoneFragment extends BaseFragment implements TextWatcher {
     public void widgetOnClick(View v) {
         switch (v.getId()) {
             case R.id.btnSecurityCode:
-                if (Utils.isPhoneNumber(atxtPhoneNumber.getText().toString())) {
+                if (CommonUtils.isPhoneNumber(atxtPhoneNumber.getText().toString())) {
                     //TODO: 待实现发送信息验证码的代码模块，获取验证码（信息和发回客户端的验证码两种）;
 
                     btnSecurityCode.setEnabled(false);
@@ -95,12 +95,12 @@ public class LoginByPhoneFragment extends BaseFragment implements TextWatcher {
             case R.id.btnLoginByPhone:
                 String strPhoneNumber = atxtPhoneNumber.getText().toString(),
                         strSecurityNumber = editSecurityCode.getText().toString();
-                if (Utils.isPhoneNumber(strPhoneNumber) && (!strSecurityNumber.equals(""))) {
+                if (CommonUtils.isPhoneNumber(strPhoneNumber) && (!strSecurityNumber.equals(""))) {
                     btnLoginByPhone.setEnabled(false);
                     //TODO: 用已经获取的验证码和用户输入的验证码作比较,两次获取的手机号码必须验证是否一致！
                     //正确就跳转，错误就报错（提示框）,验证错误或跳转前记得改变btnLoginByPhone的enable为true
                     //验证错误就enable登陆键，同时错误计数，超过三次锁号24小时
-                } else if (!Utils.isPhoneNumber(strPhoneNumber))
+                } else if (!CommonUtils.isPhoneNumber(strPhoneNumber))
                     ((LoginActivity) getActivity()).showToast("请输入正确的手机号");
                 else
                     ((LoginActivity) getActivity()).showToast("请输入收到的验证码");

@@ -1,4 +1,4 @@
-package com.implementist.ireading;
+package com.implementist.ireading.utils;
 
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -10,6 +10,8 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.dx.dxloadingbutton.lib.LoadingButton;
+import com.implementist.ireading.MyApplication;
+import com.implementist.ireading.SimpleAdapter;
 import com.implementist.ireading.activity.LoginActivity;
 import com.implementist.ireading.activity.RegisterActivity;
 import com.implementist.ireading.fragment.BookListFragment;

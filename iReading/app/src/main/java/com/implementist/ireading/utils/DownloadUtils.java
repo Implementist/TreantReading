@@ -1,4 +1,4 @@
-package com.implementist.ireading;
+package com.implementist.ireading.utils;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -9,6 +9,9 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.dd.morphingbutton.impl.LinearProgressButton;
+import com.implementist.ireading.Book;
+import com.implementist.ireading.MyApplication;
+import com.implementist.ireading.R;
 import com.implementist.ireading.activity.MainActivity;
 import com.implementist.ireading.activity.ReadingActivity;
 import com.liulishuo.filedownloader.BaseDownloadTask;
@@ -22,7 +25,7 @@ import java.io.File;
  * Copyright © 2017 Implementist. All rights reserved.
  */
 
-public class DownloadHelper {
+public class DownloadUtils {
 
     /**
      * 创建文件下载任务
@@ -33,8 +36,8 @@ public class DownloadHelper {
      * @param dialog  下载对话框
      * @return 文件下载任务
      */
-    static BaseDownloadTask createFileTask(final Context context, final Book book,
-                                           final LinearProgressButton button, final DialogPlus dialog) {
+    public static BaseDownloadTask createFileTask(final Context context, final Book book,
+                                                  final LinearProgressButton button, final DialogPlus dialog) {
         //获取完整文件存储绝对路径
         final String path = getStoragePath(book.getFileName());
         //创建并返回文件下载器对象
@@ -99,7 +102,8 @@ public class DownloadHelper {
      * @param imageView 需要添加图片资源的ImageView
      * @return 图片下载任务
      */
-    static BaseDownloadTask createImageTask(final String path, String url, final ImageView imageView) {
+    public static BaseDownloadTask createImageTask(final String path, String url, final int bookID,
+                                                   final ImageView imageView) {
         //创建并返回文件下载器对象
         return FileDownloader.getImpl()
                 .create(url)
@@ -139,6 +143,9 @@ public class DownloadHelper {
                         if (new File(path).exists()) {
                             Bitmap bitmap = BitmapFactory.decodeFile(path);
                             imageView.setImageBitmap(bitmap);
+
+                            //将下载好并转换成Bitmap的Cover图片存入缓存
+                            MyApplication.bitmapCache.put(bookID, bitmap);
                         } else {
                             imageView.setImageResource(R.drawable.ic_default_image);
                         }
@@ -157,7 +164,7 @@ public class DownloadHelper {
      * @param task 文件下载任务
      * @return 任务ID
      */
-    static int initTask(BaseDownloadTask task) {
+    public static int initTask(BaseDownloadTask task) {
         return task.start();
     }
 
@@ -166,7 +173,7 @@ public class DownloadHelper {
      *
      * @param taskID 任务ID
      */
-    static void pauseTask(int taskID) {
+    public static void pauseTask(int taskID) {
         FileDownloader.getImpl().pause(taskID);
     }
 
@@ -188,7 +195,7 @@ public class DownloadHelper {
      * @param context 程序上下文
      * @param book    绘本信息
      */
-    static void jumpToReadingActivity(Context context, Book book) {
+    public static void jumpToReadingActivity(Context context, Book book) {
 
         Bundle bundle = new Bundle();
         bundle.putString("Title", book.getTitle());
@@ -203,7 +210,7 @@ public class DownloadHelper {
      *
      * @param fileName 文件名(带后缀)
      */
-    static Boolean isFileExists(String fileName) {
+    public static Boolean isFileExists(String fileName) {
         String path = MyApplication.EXTERNAL_CACHE_DIR +
                 File.separator +
                 fileName;

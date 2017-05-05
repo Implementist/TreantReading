@@ -9,7 +9,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 
 import com.dx.dxloadingbutton.lib.LoadingButton;
-import com.implementist.ireading.HttpRequestUtils;
+import com.implementist.ireading.utils.HttpRequestUtils;
 import com.implementist.ireading.R;
 import com.implementist.ireading.activity.MainActivity;
 import com.implementist.ireading.activity.RegisterActivity;

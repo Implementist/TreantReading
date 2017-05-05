@@ -11,9 +11,9 @@ import android.widget.RadioButton;
 import android.widget.TextView;
 
 import com.dx.dxloadingbutton.lib.LoadingButton;
-import com.implementist.ireading.HttpRequestUtils;
+import com.implementist.ireading.utils.HttpRequestUtils;
 import com.implementist.ireading.R;
-import com.implementist.ireading.Utils;
+import com.implementist.ireading.utils.CommonUtils;
 import com.implementist.ireading.activity.RegisterActivity;
 
 /**
@@ -64,11 +64,11 @@ public class RegisterStep1Fragment extends BaseFragment implements TextWatcher,
                 break;
 
             case R.id.btnRegisterGetSecurityCode:
-                if (Utils.isPhoneNumber(editRegisterPhoneNumber.getText().toString()) && chbUserAgreement.isChecked()) {
+                if (CommonUtils.isPhoneNumber(editRegisterPhoneNumber.getText().toString()) && chbUserAgreement.isChecked()) {
                     btnRegisterGetSecurityCode.startLoading();
                     HttpRequestUtils.RegisterStep1Request(btnRegisterGetSecurityCode,
                             (RegisterActivity) getActivity(), editRegisterPhoneNumber.getText().toString());
-                } else if (!Utils.isPhoneNumber(editRegisterPhoneNumber.getText().toString()))
+                } else if (!CommonUtils.isPhoneNumber(editRegisterPhoneNumber.getText().toString()))
                     ((RegisterActivity) getActivity()).showToast("请输入正确的11位手机号码");
                 else if (!chbUserAgreement.isChecked())
                     ((RegisterActivity) getActivity()).showToast("您还没有接受iReading用户协议");

@@ -2,7 +2,9 @@ package com.implementist.ireading;
 
 import android.app.Application;
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.os.Environment;
+import android.util.SparseArray;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
@@ -28,12 +30,6 @@ public class MyApplication extends Application {
         }
     };
 
-    //记录当前Fragment
-    public static String lastFragment;
-
-    // 建立请求队列
-    private static RequestQueue requestQueue;
-
     //项目缓存文件夹，如以下方式书写便于检查格式
     public static final String EXTERNAL_CACHE_DIR = Environment.getExternalStorageDirectory().toString() +
             File.separator +
@@ -45,9 +41,20 @@ public class MyApplication extends Application {
             File.separator +
             "cache";
 
+    //记录当前Fragment
+    public static String lastFragment;
+
+    // 建立请求队列
+    private static RequestQueue requestQueue;
+
+    //全局绘本表
     public static JSONArray books = new JSONArray();
 
+    //当前下一个需要被加载的条目索引
     public static int currentItemIndex;
+
+    //全局图片缓存表
+    public static SparseArray<Bitmap> bitmapCache;
 
     @Override
     public void onCreate() {
@@ -58,6 +65,8 @@ public class MyApplication extends Application {
         requestQueue = Volley.newRequestQueue(getApplicationContext());
 
         currentItemIndex = 0;
+
+        bitmapCache = new SparseArray<>();
 
         //FileDownloader 初始化
         FileDownloader.init(getApplicationContext());

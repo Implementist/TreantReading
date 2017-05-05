@@ -13,9 +13,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.dx.dxloadingbutton.lib.LoadingButton;
-import com.implementist.ireading.HttpRequestUtils;
+import com.implementist.ireading.utils.HttpRequestUtils;
 import com.implementist.ireading.R;
-import com.implementist.ireading.Utils;
+import com.implementist.ireading.utils.CommonUtils;
 import com.implementist.ireading.activity.LoginActivity;
 
 /**
@@ -73,7 +73,7 @@ public class LoginByPasswordFragment extends BaseFragment implements TextWatcher
                 else if (editPassword.getText().length() == 0)
                     ((LoginActivity) getActivity()).showToast("请输入密码");
                 else {
-                    int loginType = Utils.judgeLoginType(atxtAccountNumber.getText().toString());
+                    int loginType = CommonUtils.judgeLoginType(atxtAccountNumber.getText().toString());
                     btnLoginByPassword.startLoading();
                     HttpRequestUtils.LoginByPasswordRequest(loginType, btnLoginByPassword,
                             (LoginActivity) getActivity(), atxtAccountNumber.getText().toString(),
