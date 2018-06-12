@@ -1,12 +1,12 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 25
-    buildToolsVersion "25.0.3"
+    compileSdkVersion 27
+    buildToolsVersion "27.0.3"
     defaultConfig {
         applicationId "com.implementist.ireading"
         minSdkVersion 21
-        targetSdkVersion 25
+        targetSdkVersion 27
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -20,41 +20,41 @@ android {
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
 
-    compile 'com.android.support:appcompat-v7:25.3.1'
-    compile 'com.android.support.constraint:constraint-layout:1.0.0-beta4'
-    compile 'com.android.support:support-v4:25.3.1'
-    compile 'com.android.support:recyclerview-v7:25.3.1'
-    compile 'com.android.support:design:25.3.1'
-    compile 'com.android.support:support-vector-drawable:25.3.1'
+    implementation 'com.android.support:appcompat-v7:27.1.1'
+    implementation 'com.android.support.constraint:constraint-layout:1.1.0'
+    implementation 'com.android.support:support-v4:27.1.1'
+    implementation 'com.android.support:recyclerview-v7:27.1.1'
+    implementation 'com.android.support:design:27.1.1'
+    implementation 'com.android.support:support-vector-drawable:27.1.1'
 
     //GitHub XRefreshView
-    compile 'com.huxq17.xrefreshview:xrefreshview:3.6.8'
+    implementation 'com.huxq17.xrefreshview:xrefreshview:3.6.9'
 
     //GitHub Volley
-    compile 'com.mcxiaoke.volley:library:1.0.19'
+    implementation 'com.mcxiaoke.volley:library:1.0.19'
 
     //GitHub DxLoadingButton
-    compile 'com.github.StevenDXC:DxLoadingButton:1.5'
+    implementation 'com.github.StevenDXC:DxLoadingButton:1.5'
 
     //GitHub android-pdfview
-    compile 'com.joanzapata.pdfview:android-pdfview:1.0.4@aar'
+    implementation 'com.joanzapata.pdfview:android-pdfview:1.0.4@aar'
 
     //GitHub BubbleSeekBar
-    compile 'com.xw.repo:bubbleseekbar:3.3'
+    implementation 'com.xw.repo:bubbleseekbar:3.3'
 
     //GitHub FileDownloader
-    compile 'com.liulishuo.filedownloader:library:1.4.2'
+    implementation 'com.liulishuo.filedownloader:library:1.4.2'
 
     //GitHub DialogPlus
-    compile 'com.orhanobut:dialogplus:1.11@aar'
+    implementation 'com.orhanobut:dialogplus:1.11@aar'
 
     //GitHub circular-progress-button
-    compile 'com.github.dmytrodanylyk:android-morphing-button:98a4986e56'
+    implementation 'com.github.dmytrodanylyk:android-morphing-button:98a4986e56'
 
     testCompile 'junit:junit:4.12'
 }
